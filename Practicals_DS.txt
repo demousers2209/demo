@@ -1,0 +1,3031 @@
+PRACTICAL 1: Sorting
+1.  	Bubble Sort
+#include<iostream.h>
+#include<conio.h>
+class bubble_sort
+{
+   int a[20],i,j,n,temp;
+public:
+   void get();
+   void sort();
+   void put();
+};
+void bubble_sort::get()
+{
+   cout<<"\n Enter the size of array: ";
+   cin>>n;
+   cout<<"\n Enter the array element: ";
+   for(i=1;i<=n;i++)
+       cin>>a[i];
+   cout<<"\n Array elements before sort :\n";
+   for(i=1;i<=n;i++)
+       cout<<a[i]<<"\t";
+}
+
+
+void bubble_sort::sort()
+{
+   for(i=1;i<=n-1;i++)
+   {
+       for(j=1;j<=n-i;j++)
+       {
+           if(a[j] > a[j+1])
+           {
+               temp=a[j];
+               a[j]=a[j+1];
+               a[j+1]=temp;
+           }
+       }
+   }
+}
+void bubble_sort::put()
+{
+   cout<<"\n Element after Bubble  sorting: \n";
+   for(i=1;i<=n;i++)
+       cout<<a[i]<<"\t";
+}
+
+void main()
+{
+clrscr();
+   bubble_sort b;
+   b.get();
+   b.sort();
+   b.put();
+   getch();
+}
+
+
+b. Optimized bubble sort
+#include<iostream>
+#include<conio.h>
+class bubble_sort
+{
+   int a[20],i,j,n,temp,test;
+public:
+   void get();
+   void sort();
+   void put();
+};
+void bubble_sort::get()
+{
+   cout<<"\n Enter the size of array";
+   cin>>n;
+   cout<<"\n Enter the array element";
+   for(i=1;i<=n;i++)
+       cin>>a[i];
+   cout<<"\n -----------------------";
+   cout<<"\n Array elements before sort :\n";
+   for(i=1;i<=n;i++)
+       cout<<a[i]<<"\t";
+}
+
+
+void bubble_sort::sort()
+{
+   for(i=1;i<=n-1;i++)
+   {
+       test=0;
+       for(j=1;j<=n-i;j++)
+       {
+           if(a[j] > a[j+1])
+           {
+               temp=a[j];
+               a[j]=a[j+1];
+               a[j+1]=temp;
+               test=1;
+           }
+       }
+   }
+   if (test==0)
+       return ;
+}
+void bubble_sort::put()
+{
+   cout<<"\n Element after sorting";
+   for(i=1;i<=n;i++)
+       cout<<a[i]<<"\t";
+}
+void main()
+{
+clrscr();
+   bubble_sort b;
+   b.get();
+   b.sort();
+   b.put();
+   getch();
+}
+
+
+2.Insertion Sort
+#include<iostream.h>
+#include<conio.h>
+
+class insertion
+{
+   int a[10];
+   int i,PTR,temp,k,n;
+public:
+   void get();
+   void sort();
+};
+void insertion::get()
+{
+   cout<<"\n\nEnter the size";
+   cin>>n;
+   cout<<"\n Enter elements";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+}
+//insertion sorting
+void insertion::sort()
+{
+   for(i=1;i<=n-1;i++)
+   {
+
+
+       temp = a[i];
+       PTR = i -1;
+       while(temp < a[PTR] && PTR>=0)
+       {
+           a[PTR+1] = a[PTR];
+           PTR = PTR -1;
+       }
+       a[PTR+1] = temp;
+   }
+   cout<<"\n Array elements after Insertion sort";
+   for(i=0;i<n;i++)
+       cout<<a[i]<<"\t";
+}
+void main()
+{
+clrscr();
+   insertion i;
+   i.get();
+   i.sort();
+getch();
+}
+
+
+
+
+3. Selection Sort
+#include<iostream.h>
+#include<conio.h>
+class selection
+{
+   int a[10];
+   int i,n,min_index,j;
+public:
+   void get();
+   void sort();
+};
+void selection::get()
+{
+   cout<<"\n Enter the size: ";
+   cin>>n;
+   cout<<"\n Enter elements: ";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+}
+
+
+
+
+// selection sorting
+void selection::sort()
+{
+   for(i=0; i<=n-2;i++)
+   {
+       min_index= i;
+       for(j=i+1;j<=n-1;j++)
+       {
+           if(a[min_index]>a[j])
+               min_index = j;
+       }
+       //exchange smallest number with i th position number
+       if(min_index!=i)
+       {
+           int temp;
+           temp = a[i];
+           a[i] = a[min_index];
+           a[min_index] = temp;
+       }
+   }
+   cout<<"\n Array elements after selection  sort: ";
+   for(i=0;i<n;i++)
+       cout<<a[i]<<"\t";
+}
+void main()
+{
+clrscr();
+   selection s;
+   s.get();
+   s.sort();
+getch();
+}
+
+
+4.Shell sort
+#include<iostream.h>
+#include<conio.h>
+
+class shell
+{
+   int a[30],i,j,k,n ;
+   int inc[3];
+   int numinc,increment, span,y;
+public:
+   shell();
+   void get();
+   void sort();
+};
+shell::shell()
+{
+   inc[0] = 5;
+   inc[1] = 3;
+   inc[2] = 1;
+   numinc = 3;
+}
+void shell::get()
+{
+   cout<<"\n Enter size: ";
+   cin>>n;
+   cout<<"\nEnter elements of array: ";
+   for(i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+}
+//shell sorting
+void shell::sort()
+{
+   for(increment=0;increment<numinc;increment++)
+   {
+       /*span is the size of the increment*/
+       span = inc[increment];
+       cout<<"\nspan"<<span;
+       for(j=span;j<n;j++)
+       {
+           /*insert element arr[j] into its proper position within its subfile*/
+           y = a[j];
+           for(k = j-span; k>=0 && y<a[k]; k-=span)
+               a[k+span] = a[k];
+           a[k+span] = y;
+       }
+       cout<<"\n Array elements after  span: "<<span<<"\n";
+       for(i=0;i<n;i++)
+       {
+           cout<<a[i]<<"  ";
+       }
+   }
+   cout<<"\nSorted Array:\n";
+   for(i=0;i<n;i++)
+   {
+       cout<<a[i]<<"  ";
+   }
+}
+void main()
+{
+clrscr();
+   shell s;
+   s.get();
+   s.sort();
+getch();
+
+}
+
+
+
+5.Radix Sort
+#include<iostream>
+#include<conio.h>
+class radixsort
+{
+   int arr[20],n,i;
+public:
+   void getdata();
+   void display();
+   void sort();
+};
+void radixsort :: getdata()
+{
+   cout<<"\n Enter the size of the array ";
+   cin>>n;
+   cout<<"\n \n Enter the elements of the array:  \n \n";
+   for(i=0;i<n;i++)
+       cin>>arr[i];
+   cout<<"\n Unsorted Array is: \n \n ";
+   for(i=0;i<n;i++)
+       cout<<arr[i]<<" ";
+}
+
+
+void radixsort :: sort()
+{
+   int bucket[10][20], buck_count[10], b[10];
+   int i,j,k,r,no_of_passes=0,divisor=1,largest,pass_no;
+   largest=arr[0];
+   for(i=1;i<n;i++)  //Find the largest Number
+   {
+       if(arr[i] > largest)
+           largest=arr[i];
+   }
+   while(largest > 0)  //Find number of digits in largest number
+   {
+       no_of_passes++;
+       largest /= 10;
+   }
+   for(pass_no=0; pass_no < no_of_passes; pass_no++)
+   {
+       for(k=0; k<10; k++)
+           buck_count[k]=0; //Initialize bucket count
+       for(i=0;i<n;i++){
+           r=(arr[i]/divisor) % 10;
+           bucket[r][buck_count[r]++]=arr[i];
+       }
+
+
+       i=0; //collect elements from bucket
+       for(k=0; k<10; k++){
+           for(j=0; j<buck_count[k]; j++)
+               arr[i++] = bucket[k][j];
+       }
+       divisor *= 10;
+   }
+}
+void radixsort :: display()
+{
+   cout<<"\n \n Sorted list is: \n \n ";
+   for(i=0;i<n;i++)
+       cout<<arr[i]<<" ";
+}
+void main()
+{
+clrscr();
+   cout<<"\n Radix Sort: \n";
+   radixsort r;
+   r.getdata();
+   r.sort();
+   r.display();
+getch();
+}
+
+PRACTICAL 2:
+1. Linear Search
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+    int arr[10], i, num, index;
+    cout<<"Enter 10 Numbers: ";
+    for(i=0; i<10; i++)
+     cin>>arr[i];
+    cout<<"\n Enter a Number to Search: ";
+    cin>>num;
+    for(i=0; i<10; i++)
+    {
+        if(arr[i]==num)
+	{
+	index = i;
+           break;
+        }
+    }
+    cout<<"\n Element found at Index No:\n "<<index+1;
+    getch();
+}
+
+2. Binary Search
+#include <iostream.h>
+#include<conio.h>
+
+class binary
+{
+  int a[20], i, key, n, mid, low, high, temp, j;
+
+public:
+  void get();
+  void sort();
+  void display();
+  void search();
+};
+
+void binary::get()
+{
+  cout << "\n Enter the size of array: ";
+  cin >> n;
+  cout << "\n Enter the array element: ";
+  for (i = 0; i < n; i++)
+    cin >> a[i];
+  cout << "\n -----------------------";
+  cout << "\n Elements in array are:\n";
+  for (i = 0; i < n; i++)
+    cout << a[i] << "\t";
+}
+
+void binary::sort()
+{
+  for (i = 0; i < n - 1; i++)
+  {
+    for (j = 0; j < n - i - 1; j++)
+    {
+      if (a[j] > a[j + 1])
+      {
+        temp = a[j];
+        a[j] = a[j + 1];
+        a[j + 1] = temp;
+      }
+    }
+  }
+}
+
+void binary::search()
+{
+  cout << "\n-------------------------------";
+  cout << "\n Enter the element to be search : ";
+  cin >> key;
+  low = 0;
+  high = n - 1;
+  while (low <= high)
+  {
+    mid = (low + high) / 2;
+    if (a[mid] == key)
+    {
+      cout << "Successful search ";
+      cout << "\n Element is found at position: " << mid + 1;
+      return; // Exit the function if found
+    }
+    else if (a[mid] < key)
+      low = mid + 1;
+    else
+      high = mid - 1;
+  }
+  cout << "\n Unsuccessful search";
+}
+
+void binary::display()
+{
+  cout << "\n Array elements are ";
+  for (i = 0; i < n; i++)
+    cout << a[i] << "\t";
+}
+
+void main()
+{
+clrscr();
+  binary b;
+  b.get();
+  cout << "\n=============================";
+  cout << "\n Array elements after sort: ";
+  b.sort();
+  b.display();
+  b.search();
+getch();
+}
+
+3. Recursive Binary Search 
+ #include<iostream.h>
+#include<conio.h>
+class binary
+{
+  int a[20],i,key,n,mid,low,high,temp,j,s;
+  public:
+  void get();
+  int search(int a[],int key,int low,int high);
+};
+void binary::get()
+{
+  cout<<"\n Enter the size of array";
+  cin>>n;
+  cout<<"\n enter the array element";
+  for(i=0;i<n;i++)
+    cin>>a[i];
+  cout<<"\n -----------------------";
+  cout<<"\n elements in array are:\n";
+  for(i=0;i<n;i++)
+    cout<<a[i]<<"\t";
+  cout<<"\n-------------------------------";
+  cout<<"\n enter the element to be search";
+  cin>>key;
+  low=0;high=n-1;
+  s=search(a,key,low,high);
+  if(s>=0)
+  {
+    cout<<"successful search ";
+    cout<<"\n element is found at position "<<s+1;
+  }
+  else
+  cout<<"\n unsuccessful search";
+}
+int binary::search(int a[],int key,int low ,int high )
+{
+    if(low>high)
+      return -1;
+    mid=(low+high)/2;
+    if(key<a[mid])
+    return ( search(a,key,low,mid-1));
+    else if(key>a[mid])
+    return ( search(a,key,mid+1,high));
+    else
+    return mid;
+
+  }
+void main()
+{
+ clrscr();
+ binary b;
+ b.get();
+ getch();
+}
+
+PRACTICAL 3:
+Stack using Array
+#include<iostream.h>
+#include<process.h>
+#include<conio.h>
+class stack
+{
+int s[10];
+int top,n,i,x;
+public:
+stack();
+void push();
+void pop();
+void isfull();
+void isempty();
+void showtop();
+void peep();
+void change();
+void count();
+void display();
+}
+stack::stack()
+{
+	top=-1;
+	n=3;
+}
+void stack::push()
+{
+	if(top==n-1)
+		cout<<"\nStack overflow, cannot insert new element.";
+else
+	{
+	  cout<<"\nEnter value to be pushed";
+	  cin>>x;
+	  top++;
+	  s[top] = x;
+	}
+}
+void stack::pop()
+{
+	if(top==-1)
+	   cout<<"\nStack underflow";
+	else
+	{
+	  x=s[top];
+	  top=top-1;
+	  cout<<"\nPopped value from stack "<<x;
+	}
+}
+
+void stack:: isfull()
+{
+	if(top==n-1)
+		cout<<"\nStack is full";
+	else
+	       cout<<"\nStack is not full";
+}
+void stack::isempty()
+{
+	if(top==-1)
+		cout<<"\nStack is empty";
+	else
+		cout<<"\nStack is not empty";
+}
+void stack::showtop()
+{
+	if(top==-1)
+		cout<<"\nStack is empty";
+	else
+		cout<<"\nValue at the top is:"<<s[top];
+}
+void stack::peep()
+{
+	cout<<"\n enter the position";
+	cin>>i;
+	if((top-i+1)<0)
+	{
+	  cout<<"\n stack is underflow in peep";
+	  cout<<"\n invalid postion";
+	}
+	else
+	  cout<<"\n element at "<<i<<"is"<<s[top-i+1];
+
+}
+void stack::change()
+{
+	cout<<"\n enter the position";
+	cin>>i;
+	cout<<"\n enter the element";
+	cin>>x;
+	if((top-i+1)<0)
+	{
+	  cout<<"\n stack is underflow in change";
+	  cout<<"\n invalid postion";
+	}
+	s[top-i+1]=x;
+
+}
+void stack::display()
+{
+	int i;
+	if(top==-1)
+	{
+		cout<<"\nStack is empty";
+		return;
+	}
+	cout<<"\nStack elements are: ";
+	for(i=0;i<=top;i++)
+	{
+		cout<<s[i]<<"\t";
+	}
+}
+void stack::count()
+{
+	int count = 0;
+	int i;
+	if (top==-1)
+	{
+		cout<<"\nStack is empty";
+		cout<<"\n number of elements in stack"<<count;
+		return;
+	}
+	for(i=0;i<=top;i++)
+		count++;
+	cout<<"\nNumber of elements in stack "<<count;
+}
+
+void main()
+{
+	char choice;
+	int ch;
+	stack s;
+	clrscr();
+
+	do
+	{       cout<<"\n1:Push 2:Pop 3:Top 4:Is empty 5:Isfull 6:Count 7:change 8:Display 9: exit";
+		cout<<"\nEnter Menu number: ";
+		cin>>ch;
+		switch(ch)
+		{
+			case 1: s.push();
+				break;
+			case 2: s.pop();
+				break;
+			case 3: s.showtop();
+				break;
+			case 4: s.isempty();
+				break;
+			case 5: s.isfull();
+				break;
+			case 6: s.count();
+				break;
+			case 7: s.change();
+				break;
+			case 8: s.display();
+				break;
+			case 9: exit(0);
+	}
+	}
+	while(ch!=9);
+	getch();
+}
+
+
+PRACTICAL 4: APPLICATIONS OF STACK
+1.Evaluation of postfix expression
+#include<iostream.h>
+#include<ctype.h>
+#include<stdio.h>
+#include<conio.h>
+class stack
+{
+int s[20],top;
+public:
+stack()
+{
+ top=-1;
+}
+void push(int);
+int pop();
+int evaluate(char c, int op1,int op2);
+};
+void stack::push(int x)
+{
+   if(top>=19)
+     cout<<"\nstackis full";
+   else
+   {
+     top=top+1;
+     s[top]=x;
+   }
+}
+int stack::pop()
+{
+  if(top==-1)
+  {
+    cout<<"\n Stack is empty";
+    return 1;
+  }
+  else
+  {   int x;
+      x=s[top];
+      top=top-1;
+      return(x);
+  }
+}
+int stack::evaluate(char c,int op1,int op2)
+{
+  if(c=='+')
+    return(op1+op2);
+  if(c=='-')
+     return(op1-op2);
+  if(c=='*')
+     return(op1*op2);
+  if(c=='/')
+    return(op1/op2);
+  if(c=='%')
+    return(op1%op2);
+}
+void main()
+{
+ stack d;
+ char ch;
+ clrscr();
+ int op1,op2,val;
+ cout<<"\n Enter the expression (5+6)-->65+ in single digit";
+ while((ch=getchar())!='\n')
+ {
+  if(isdigit(ch))
+    d.push(ch-48);
+  else
+  {
+   op2=d.pop();
+   op1=d.pop();
+   val=d.evaluate(ch,op1,op2);
+   d.push(val);
+  }
+ }
+ val=d.pop();
+ cout<<"\n \n Value of expression: "<<val;
+ getch();
+ }
+
+2.Balancing Parenthesis
+
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+char a,b,c;
+char s[20];
+int top,n,i;
+char x;
+class stack
+{
+ public:
+ stack()
+ {
+  top=-1;
+ }
+ void push(char c);
+ char pop();
+};
+void stack::push(char c)
+{
+ top=top+1;
+ s[top]=c;
+}
+ 
+char stack ::pop()
+{
+ x=s[top];
+ top=top-1;
+ return x;
+}
+void main()
+{
+clrscr();
+  stack d;
+  char exp[20];
+  cout<<"\n enter postfix expression";
+  cin>>exp;
+  for(i=0;i<strlen(exp);i++)
+  {
+   if(exp[i]=='(' || exp[i]=='[' || exp[i]=='{')
+   {
+     d.push(exp[i]);
+     continue;
+   }
+   else
+   {
+    switch(exp[i])
+    {
+     case ')': a=d.pop();
+        	       if(a=='{' || a== '[');  //not balanced
+     break;
+     case '}': b=d.pop();    // not balanced
+        	      if(b=='('|| b =='[');
+     break;
+     case ']': c=d.pop();
+        	    if(c=='('|| c=='{');
+     break;
+    }
+   }
+  }
+  if(top==-1)
+    cout<<"\n expression having balanced parenthesis";
+  else
+    cout<<"\n expression is not having balanced parenthesis";
+    
+    getch();
+}
+
+PRACTICAL 5: QUEUE USING Array
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+class queue
+{
+
+   int a[10],front,rear,item,i;
+   public:
+   queue()
+   {
+   front=rear=0;
+   }
+   void insert();
+   void del();
+   void count();
+   void display();
+};
+void queue::insert()
+{
+ if(rear >=3)
+ {
+   cout<<"\nQueue is full";
+   return;
+ }
+ else
+ {
+    cout<<"\n enter element";
+    cin>>item;
+    rear++;
+    a[rear] = item;
+ }
+ if(front==0)
+   front = 1;
+}
+void queue::del()
+{
+ if(front == 0)
+ {
+   cout<<"\nQueue is empty";
+   return;
+ }
+ cout<<"\nDeleted item"<<a[front];
+
+ if(front == rear)
+   front=rear = 0;
+ else
+   front++;
+}
+void queue::count()
+{
+ int count=0;
+ if(front==0)
+ {
+   cout<<"\nQueue is empty";
+   cout<<"\n number of elment in queue"<<count;
+   return;
+ }
+ else
+ {
+   for(i=front;i<=rear;i++)
+   {
+      count++;
+   }
+   cout<<"\n number of element in queue"<<count;
+ }
+}
+void queue::display()
+{
+ int i;
+ if(front==0)
+   cout<<"\nQueue is empty";
+ else
+ {
+ cout<<"\n element in queue are:";
+ for(i=front;i<=rear;i++)
+   {
+      cout<<a[i]<<"\t";
+   }
+ }
+}
+void main()
+{
+ int item;
+ int ch;
+ queue q;
+ clrscr();
+ cout<<"\n\n\n1:insert 2:delete 3:Count 4:Display 5 :exit";
+ do
+ {
+  cout<<"\nEnter Menu number: ";
+  cin>>ch;
+  switch(ch)
+  {
+  case 1: q.insert();
+   break;
+  case 2: q.del();
+   break;
+  case 3: q.count();
+   break;
+  case 4: q.display();
+   break;
+  case 5: exit(0);
+  }
+  }
+ while(ch!=5);
+ getch();
+}
+
+PRACTICAL 6:
+Circular queue using array: enqueue,dequeue
+#include<iostream>
+using namespace std;
+
+class cqueue
+{
+   int arr[10], front,rear,item,i,MAX;
+   public:
+   cqueue()
+   {
+   front=rear=-1;
+   MAX=5; // size of circular queue
+   }
+   void add();
+   void display();
+   void del();
+};
+
+void cqueue::add()
+{
+
+   if( ((rear == MAX-1)&&(front==0))   || (rear + 1 == front)  )
+   {
+      cout<<"\nQueue is full";
+      return;
+   }
+   if(rear == MAX-1)
+      rear = 0;
+   else
+      rear++;
+
+   cout<<"\nEnter item to be inserted";
+   cin>>item;
+   arr[rear] = item;
+
+   if(front == -1)
+      front = 0;
+}
+void cqueue::del()
+{
+   if(front == -1)
+   {
+      cout<<"\nQueue is empty";
+        return;
+   }
+   cout<<"\nDeleted item ="<<arr[front];
+   arr[front] = 0;
+
+   if(front == rear)
+      front=rear = -1;
+   else
+   {
+      if(front == MAX-1)
+      front = 0;
+      else
+      front++;
+   }
+}
+void cqueue::display()
+{
+
+   int i;
+   if(front==-1)
+       cout<<"\nQueue is empty";
+   else
+   {
+       for(i=0;i<=MAX-1;i++)
+         cout<<"\n"<<arr[i];
+   }
+}
+int main()
+{
+
+   int menu,MAX,arr[MAX],i,ch;
+   cqueue c;
+   //initialize data memebers of queue to zero
+   for(i=0;i<MAX;i++)
+      arr[i] = 0;
+   cout<<"\n 1. Add 2 Delete  3 display ";
+   do
+   {
+
+      cout<<"\nEnter your choice";
+      cin>>ch;
+      switch(ch)
+      {
+         case 1:
+            c.add();
+            break;
+         case 2: c.del();
+            break;
+         case 3: c.display();
+            break;
+         case 4: exit (0);
+      }
+   }
+   while(ch!=4);
+
+}
+
+PRACTICAL 7: SingleLinked List
+
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+class linklist
+{
+	struct node
+	{
+	  int info;
+	  node *link;
+	}*node1;
+	int item,s,x,f,pos,c;
+	struct node *SAVE,*FIRST,*PRED,*TEMP,*t;
+
+public:
+	void insert_front();
+	void insert_last();
+	void dis();
+	void count();
+	void del_front();
+	void del_info();
+	int  search();
+	void reverse();
+	linklist()
+	{
+	  FIRST=NULL;
+	  f=0;
+	}
+};
+
+
+void linklist::insert_front()
+{
+      cout<<"\nEnter the item:";
+	cin>>item; 
+
+	node *node1=new node;
+
+	node1->link=NULL;
+	node1->info=item;
+
+	if(FIRST==NULL)  
+		FIRST=node1;
+	else
+	{
+	  node1->link=FIRST;
+	  FIRST=node1;
+	}
+}
+
+void linklist::insert_last()
+{
+   cout<<"\nEnter the item:";
+   cin>>item;
+   node *node1=new node;
+   node1->link=NULL;
+   node1->info=item;
+   if(FIRST==NULL)
+      FIRST=node1;
+   else
+   {
+       SAVE=FIRST;
+       while(SAVE->link!=NULL)
+	  SAVE=SAVE->link;
+       SAVE->link=node1;
+   }
+}
+
+void linklist::count()
+{
+   int c=0;
+   node *x;
+   x=FIRST;
+   if(x==NULL)
+   {
+       cout<<"\n LL is empty";
+       return;
+   }
+   else
+   {
+     while(x!=NULL)
+     {
+       c++;
+       x=x->link;
+     }
+   }
+   cout<<"number of nodes are"<<c;
+}
+
+void linklist::dis()
+{
+   node *x;
+   x=FIRST;
+   if(x==NULL)
+   {
+       cout<<"\n LL is empty";
+       return;
+   }
+   else
+   {
+     cout<<"\n Elements in LL are:";
+     while(x!=NULL)
+     {
+       cout<<"\t"<<x->info;
+       x=x->link;
+     }
+   }
+}
+
+
+void linklist::del_front()
+{
+   SAVE=FIRST;
+   if(SAVE!=NULL)
+   {
+	SAVE=SAVE->link;
+	cout<<"\nDeleted node is"<<FIRST->info;
+	FIRST=SAVE;
+   }
+   else
+	cout<<"\n List is empty:";
+}
+void linklist :: del_info()
+{
+
+   if(FIRST == NULL)
+   {
+      cout<<"list is empty";
+      return;
+   }
+   cout<<"\n enter the node according to info";
+   cin>>x;
+   if(FIRST->info== x)
+   {
+     FIRST=FIRST->link;
+     f=1;
+   }
+   SAVE=FIRST;
+   while(SAVE!=NULL)
+   {
+     PRED = SAVE;
+     SAVE=SAVE->link;
+     if(SAVE->info==x)
+     {
+       f=1;
+       PRED->link=SAVE->link;
+     }
+    }
+   if(f==0)
+    cout<<"\n element not found";
+}
+
+int linklist::search()
+{
+   int c=0;
+   cout<<"\nEnter item";
+   cin>>item;
+   SAVE=FIRST;
+   while(SAVE!=NULL)
+   {
+	c++;
+	if(SAVE->info==item)
+	{
+	 return c;
+	}
+	SAVE=SAVE->link;
+   }
+   return -1;
+}
+
+void linklist ::reverse()
+{
+    node *temp;
+    SAVE=FIRST;          
+    temp=NULL;
+    while(SAVE->link!=NULL)
+    {
+     temp=SAVE->link;
+     SAVE->link=temp->link;
+     temp->link=FIRST;
+     FIRST=temp;
+    }
+    dis();
+}
+void main()
+{
+    clrscr();
+    linklist n;
+    int ch,f;
+    cout<<"\n 1: insert_front 2.Insert_last 3.Display 4. Del_front 5.del_info 6.Search  7.reverse  8.count 9.Exit\n";
+    do
+    {
+    cout<<"\nEnter choice";
+    cin>>ch;
+    switch(ch)
+    {
+	case 1 : n.insert_front();break;
+	case 2: n.insert_last(); break;
+	case 3: n.dis(); break;
+	case 4: n.del_front(); break;
+	case 5 :n.del_info();break;
+	case 6: f=n.search();
+	       if(f>0)
+		cout<<"\nElement is found at position "<<f;
+	       else
+		cout<<"\nElement is not found"; break;
+	case 7:n.reverse();break;
+	case 8:n.count();break;
+	case 9: exit(0);
+     }
+  }while(ch!=9);
+getch();
+}
+
+PRACTICAL 8:
+1. Stack  using linked list
+#include<conio.h>
+#include<iostream.h>
+#include<process.h>
+int c = 0;
+class stack
+{
+        	int info, ele;
+        	stack *node,*link,*top;
+public:
+        	stack()
+        	{
+        	  top=NULL;
+        	}
+        	void insert();
+        	void del();
+        	void dis();
+};
+void stack::insert()
+{
+ if(c==2)
+	cout<<"stack is full";
+ else
+ {
+        	node=new stack;
+        	cout<<"\nEnter Info:";
+        	cin>>ele;
+        	node->info=ele;
+        	node->link=NULL;
+        	if(top==NULL)
+        	{
+                    	top=node;
+        	}
+        	else
+        	{
+                    	node->link=top;
+                    	top=node;
+        	}
+        	c++;
+ }
+}
+void stack::del()
+{
+        	if(top==NULL)
+        	{
+                    	cout<<"\n Underflow";
+        	}
+        	else
+        	{
+                    	cout<<"\nDeleted Element is :"<<top->info;
+                    	top=top->link;
+                    	c--;
+        	}
+}
+void stack::dis()
+{
+        	stack *move;
+        	move=top;
+        	while(move!=NULL)
+        	{
+                    	cout<<"\t"<<move->info;
+                    	move=move->link;
+        	}
+}
+void main()
+{
+        	clrscr();
+        	int ch;
+        	stack s;
+        	cout<<"\n1.Insert 2.Show 3.Delete 4.Exit";
+        	while(ch!=4)
+        	{
+                    	cout<<"\nEnter Choice";
+                    	cin>>ch;
+                    	switch(ch)
+                    	{
+                                	case 1: s.insert(); break;
+                                	case 2: s.dis(); break;
+                                	case 3: s.del(); break;
+                                	case 4:exit(0);
+                    	}
+        	}
+getch();
+}
+
+
+2. Linear queue using linked list
+#include<conio.h>
+#include<iostream.h>
+#include<process.h>
+class queue
+{
+        	int info, ele,c;
+        	queue *node,*link,*first,*move;
+public:
+        	queue()
+        	{
+        	first=NULL;
+        	c=0;
+        	}
+        	void insert();
+        	void del();
+        	void dis();
+};
+ 
+void queue::insert()
+{
+        	node=new queue;
+        	if(c<3)
+        	{
+                    	cout<<"\nEnter Info:";
+                    	cin>>ele;
+                    	node->info=ele;
+                    	node->link=NULL;
+                    	if(first==NULL)
+                    	{
+                                	first=node;
+                                	c++;
+                                	return;
+                    	}
+                    	else
+                    	{
+                                	move=first;
+                                	while(move->link!=NULL)
+                                	move=move->link;
+                                	move->link=node;
+                                	c++;
+                    	}
+        	}
+        	else
+                    	cout<<"\n Overflow";
+}
+void queue::del()
+{
+        	move=first;
+        	if(move!=NULL)
+        	{
+                    	move=move->link;
+                    	cout<<"\nDeleted Element is :"<<first->info;
+                    	first=move;
+        	}
+        	else
+                    	cout<<"\nUnderflow";
+}
+void queue::dis()
+{
+        	move=first;
+        	if(move==NULL)
+        	{
+                    	cout<<"\n Queue is empty ";
+                    	return;
+        	}
+        	else
+        	{
+                    	while(move!=NULL)
+                    	{
+                                	cout<<move->info<<"\t";
+                                	move=move->link;
+                    	}
+        	}
+}
+void main()
+{
+        	clrscr();
+        	int ch;
+        	queue s;
+        	cout<<"\n1.Insert 2.Show 3.Delete 4.Exit";
+        	while(ch!=4)
+        	{
+                    	cout<<"\nEnter Choice";
+                    	cin>>ch;
+                    	switch(ch)
+                    	{
+                                	case 1: s.insert();break;
+                                	case 2: s.dis();break;
+                                	case 3: s.del();break;
+                                	case 4:exit(0);
+                    	}
+        	}
+getch();
+}
+
+PRACTICAL 9:
+Circular  linked list
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+class CLL
+{
+ int info ,item;
+ CLL *link,*node,*first,*move,*temp,*pred;
+ public:
+ CLL()
+ {
+  first=NULL;
+ }
+ void insert_front();
+ void insert_last();
+ void del_front();
+ void del_last();
+ void count();
+ void search();
+ void display();
+
+};
+void CLL::insert_front()
+{
+   node=new CLL;
+   cout<<"Enter item";
+   cin>>item;
+   node->info=item;
+
+   if(first==NULL)
+   {
+      first=node;
+      first->link=first;
+   }
+   else
+   {
+    move=first;
+    node->link=first;
+
+    while(move->link !=first)
+    {
+      move=move->link;
+    }
+    move->link=node;
+
+    first=node;
+   }
+}
+void CLL:: insert_last()
+{
+   node=new CLL;
+   cout<<"Enter item";
+   cin>>item;
+   node->info=item;
+   if(first==NULL)
+   {
+      first=node;
+      first->link=first;
+   }
+   else
+   {
+    move=first;
+    while(move->link !=first)
+    {
+      move=move->link;
+    }
+    move->link=node;
+    node->link=first;
+   }
+}
+
+void CLL::del_front()
+{
+ if(first==NULL)
+ {
+   cout<<"\n CLL is empty ";
+   return;
+ }
+ if(first->link==first)
+ {
+   cout<<"\n Deleted element is"<<first->info;
+   first=NULL;
+ }
+ else
+ {
+   temp=first;
+   move=first;
+   cout<<"\n Deleted element is"<<first->info;
+   first=first->link;
+   while(move->link!=temp)
+   {
+   move=move->link;																													link;
+   }
+   move->link=first;
+ }
+}
+void CLL::del_last()
+{
+
+if(first==NULL)
+ {
+   cout<<"\n CLL is empty ";
+   return;
+ }
+  if(first->link==first)
+ {
+   cout<<"\n deleted element is"<<first->info;
+   first=NULL;
+ }
+ else
+ {
+ move=first;
+ while(move->link!=first)
+  {
+   pred=move;
+   move=move->link;
+  }
+  cout<<"\n del element is"<<move->info;
+  pred->link=first;
+}
+}
+void CLL::count()
+{
+  int c;
+  if(first==NULL)
+   {
+      cout<<"\n CLL is empty";
+   }
+   else
+   {
+    move=first;
+    c=1;
+    while(move->link!=first)
+    {
+      c++;
+      move=move->link;
+    }
+    cout<<"\n no of nodes in CLL" <<c;
+}
+}
+void CLL::search()
+{   int c,f=0;
+   if(first==NULL)
+   {
+      cout<<"\n CLL is empty";
+   }
+   else
+   {
+    move=first;
+    c=1;
+    cout<<"\n enter item to be search";
+    cin>>item;
+    while(move->link!=first)
+    {
+     if(move->info==item)
+     {
+      f=1;
+      cout<<"\nelement is found at location"<<c;
+      return;
+     }
+     c++;
+     move=move->link;
+    }
+    if(move->info==item)
+    {
+      f=1;
+      cout<<"\nelement is found at location"<<c;
+    }
+    if(f==0)
+      cout<<"element is not found";
+   }
+}
+void CLL::display()
+{
+ if(first==NULL)
+   {
+      cout<<"\n CLL is empty";
+   }
+   else
+   {
+    move=first;
+
+    while(move->link !=first)
+    { cout<<move->info<<"\t";
+      move=move->link;
+    }
+    cout<<move->info;
+  }
+}
+void main()
+{
+clrscr();
+CLL c;
+int ch;
+cout<<"\n 1: insert_front 2: insert_last 3:del_front 4:del_last 5:count 6:search   7:dispaly        8:exit";
+do
+{
+  cout<<"\n Enter choice";
+  cin>>ch;
+  switch(ch)
+  {
+    case 1: c.insert_front();
+    break;
+    case 2: c.insert_last();
+    break;
+    case 3: c.del_front();
+    break;
+    case 4: c.del_last();
+    break;
+    case 5: c.count();
+    break;
+    case 6: c.search();
+    break;
+    case 7: c.display();
+    break;
+    case 8: exit(0);
+  }
+}while(ch!=8);
+getch();
+}
+
+Practical 10:
+Doubly Link List
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+class DLL
+ 
+{
+  struct node
+  {
+   int info,item;
+   node *left,*right;
+  } *node1,*first , *move,*pred,*temp;
+  public:
+  DLL()
+  {
+   first=NULL;
+  }
+  void insert_front();
+  void insert_last();
+  void del_front();
+  void del_last();
+  int search();
+  void count();
+  void display();
+};
+void DLL::insert_front()
+{
+   int item;
+   node * node1=new node;
+ 
+   cout<<"\n enter item";
+   cin>>item;
+ 
+   node1->info=item;
+   node1->left=NULL;
+   node1->right=NULL;
+ 
+   if(first==NULL)
+   {
+     first=node1;
+     return;
+   }
+   else
+   {
+    node1->right=first;
+    first->left=node1;
+    first=node1;
+    }
+}
+ 
+void DLL::insert_last()
+{
+ 
+   node * node1=new node;
+   int item;
+   cout<<"\n enter item";
+   cin>>item;
+ 
+   node1->info=item;
+   node1->left=NULL;
+   node1->right=NULL;
+ 
+   if(first==NULL)
+   {
+     first=node1;
+     return;
+   }
+   else
+   {
+    move=first;
+    while(move->right !=NULL)
+    {
+     move=move->right;
+    }
+    move->right=node1;
+    node1->left=move;
+   }
+}
+void DLL::count()
+{  int c=0;
+   if(first==NULL)
+  {
+   cout<<"\n DLL is empty";
+   return;
+  }
+  else
+  {
+    move=first;
+    while(move!=NULL)
+    {
+     c++;
+     move=move->right;
+    }
+    cout<<"\n no of elements in dLL are"<<c;
+  }
+}
+void DLL::del_front()
+{
+  if(first==NULL)
+  {
+   cout<<"\n DLL is empty";
+   return;
+  }
+  else
+  {
+   move=first;
+   first=move->right;
+   first->left=NULL;
+   move->right=NULL;
+   cout<<"\deleted element is"<<move->info;
+  }
+}
+void DLL::del_last()
+{
+    if(first==NULL)
+  {
+   cout<<"\n DLL is empty";
+   return;
+  }
+  else
+  {
+   move=first;
+   while(move->right!=NULL)
+   {
+    pred=move;
+    move=move->right;
+   }
+  pred->right=NULL;
+  move->left=NULL;
+  if(first==move)
+  {
+  first=NULL;
+  }
+  cout<<"\n del elelement is"<<move->info;
+  }
+}
+void DLL::display()
+{
+ 
+  if(first==NULL)
+  {
+   cout<<"\n DLL is empty";
+   return;
+  }
+  else
+  {
+    move=first;
+    while(move!=NULL)
+    {
+     cout<<move->info<<"\t";
+     move=move->right;
+    }
+  }
+}
+int DLL::search()
+{
+ int c=0,x;
+ cout<<"\n enter the node";
+ cin>>x;
+ for(temp=first;temp!=NULL;temp=temp->right)
+ {
+   c++;
+   if(temp->info==x)
+      return c;
+ }
+ return -1;
+}
+ 
+void main()
+{
+  clrscr();
+  DLL d;
+  int ch;
+  cout<<" 1: insert_front  2: insert_last  3:del_front  4:del_last  5: search 6:count 7:display  8:exit";
+  do
+  {
+  cout<<"\n enter choice";
+  cin>>ch;
+  switch(ch)
+  {
+   case 1: d.insert_front();
+   break;
+   case 2: d.insert_last();
+   break;
+   case 3:d.del_front();
+   break;
+   case 4:d.del_last();
+   break;
+case 5:
+int f;
+f=d.search();
+if(f>0)
+  cout<<"\n element is found at "<<f;
+else
+  cout<<"\n element not found";
+break;
+   case 6:d.count();
+   break;
+   case 7:d.display();
+   break;
+   case 8:exit(0);
+  }
+  }while(ch!=8);
+  getch();
+}
+
+Practical no: 11
+ Priority queue  
+#include<iostream.h>
+#include<process.h>
+#include<conio.h>
+class priority_queue
+{
+  struct node
+  {
+    int info,priority;
+    node *link;
+  }*node1,*first,*temp;
+  public:
+  void insert();
+  void del();
+  void display();
+};
+void priority_queue::insert()
+{
+ node *node1=new node;
+ int item,p;
+ cout<<"\n enter item";
+ cin>>item;
+ cout<<"\n enter priority";
+ cin>>p;
+ node1->info=item;
+ node1->priority=p;
+ node1->link=NULL;
+ if(first==NULL || p<first->priority)
+ {
+   node1->link=first;
+   first=node1;
+ }
+ else
+ {
+  temp=first;
+  while(temp->link!=NULL && temp->link ->priority <=p)
+  {
+   temp=temp->link;
+  }
+  node1->link=temp->link;
+  temp->link=node1;
+ }
+}
+void priority_queue:: del()
+{
+ if(first==NULL)
+ {
+  cout<<"\n priority queu is empty";
+ }
+ else
+ {
+ temp=first;
+ cout<<"\n deleted element is"<<temp->info;
+ first=first->link;
+ }
+}
+void priority_queue::display()
+{
+if(first==NULL)
+ cout<<"\n priority queue is empty";
+ else
+ {
+  temp=first;
+  cout<<"\n elements in priority queue are";
+  while(temp!=NULL)
+  {
+    cout<<"\n"<<temp->priority<<"\t"<<temp->info;
+    temp=temp->link;
+  }
+ }
+}
+void main()
+{
+ clrscr();
+ priority_queue p;
+ int ch;
+ cout<<"1:insert 2: del 3: display 4: exit";
+ do
+ {
+  cout<<"\n enter choice";
+  cin>>ch;
+  switch(ch)
+  {
+    case 1: p.insert();break;
+    case 2:p.del();break;
+    case 3:p.display();break;
+    case 4:exit(0);
+  }
+ }while(ch!=4);
+ getch();
+}
+
+
+Practical 12
+Graph structure using adjacency matrix 
+#include<iostream.h>
+#include<conio.h>
+class adjmatrix
+{
+ int totalnode;
+ char nodes[10];
+ int adjmat[10][10];
+ public:
+ adjmatrix();
+ void acceptedge();
+ void print();
+};
+adjmatrix::adjmatrix()
+{
+ cout<<"How many nodes are there less than 10 ";
+ cin>>totalnode;
+ for(int i=0;i<totalnode;i++)
+ {
+  cout<<"Enter name of nodes"<<i<<" ";
+  cin>>nodes[i];
+ }
+}
+ 
+void adjmatrix::acceptedge()
+{
+ for(int i=0;i<totalnode;i++)
+ {
+   char ans;
+   for(int j=0;j<totalnode;j++)
+   {
+ 	cout<<"Is there an Edge between "<<nodes[i]<<" -->"<<nodes[j]<<"(Y/N)";
+ 	cin>>ans;
+ 	if(ans=='Y'||ans=='y')
+        	adjmat[i][j]=1;
+ 	else
+        	adjmat[i][j]=0;
+   }
+ }
+}
+void adjmatrix::print()
+{
+  cout<<" ";
+  for(int i=0;i<totalnode;i++)
+ 	cout<<" " <<nodes[i];
+  cout<<endl;
+  for(i=0;i<totalnode;i++)
+  {
+ 	cout<<nodes[i];
+ 	for(int j=0;j<totalnode;j++)
+ 	{
+   	cout<<" "<<adjmat[i][j];
+ 	}
+ 	cout<<endl;
+  }
+}
+void main()
+{
+clrscr();
+adjmatrix adj;
+adj.acceptedge();
+adj.print();
+getch();
+}
+ 
+Practical 13: Graph traversal technique
+1. Depth First Search (DFS)
+#include<iostream.h>
+#include<conio.h>
+class dfstree
+{
+   int a[20][20], visited[20],n,i,j;
+   public:
+   void dfs(int);
+   void get();
+};
+void dfstree::get()
+{
+   cout<<"\nEnter the number of node";
+   cin>>n;
+   for(i=0;i<n;i++)
+   {
+   	visited[i]=0;
+   }
+   cout<<"\nEnter the adjancy matrix:";
+   for(i=0;i<n;i++)
+   {
+ 	for(j=0;j<n;j++) 
+ 	{
+    	cin>>a[i][j];
+ 	}
+   }
+   dfs(0);
+}
+void dfstree::dfs(int v)
+{
+   int k;
+   visited[v]=1;
+   cout<<"\t"<<v+1;
+   for(k=1;k<n;k++)
+   {
+	if(a[v][k]==1)
+ 	{
+   	if(visited[k]==0)
+    	{
+      	dfs(k);
+    	}
+ 	}
+   }
+}
+void main()
+{
+clrscr();
+dfstree d;
+d.get();
+getch();
+}
+
+2. Breadth First Search (BFS)
+#include<iostream.h>
+#include<conio.h>
+class bfstraval
+{
+ int reach[20],a[20][20],q[20],n,i,j,f,r,index;
+ public:
+ bfstraval()
+ {
+  f=r=0;
+  index=1;
+ }
+void get();
+void bfs();
+};
+void bfstraval::get()
+{
+ cout<<"\nEnter number of vertices:";
+ cin>>n;
+ cout<<"\nEnter Adjacency matrix:";
+ for(i=1;i<=n;i++)
+ {
+   for(j=1;j<=n;j++)
+   {
+	reach[i]=0;
+	cin>>a[i][j];
+   }
+ }
+}
+void bfstraval::bfs()
+{
+ reach[1]=1;
+ f++;
+ r++;
+ q[r]=index;
+ cout<<"\nBFS is ";
+ while(f<=r)
+ {
+  index=q[f];
+  f++;
+  cout<<index<<"\t";
+  for(j=1;j<=n;j++)
+  {
+	if(a[index][j]==1 && reach[j]!=1)
+	{
+ 	reach[j]=1;
+ 	r++;
+ 	q[r]=j;
+	}
+  }
+ }
+}
+void main()
+{
+ clrscr();
+ bfstraval b;
+ b.get();
+ b.bfs();
+ getch();
+}
+ 
+
+Practical No:  14
+Minimum spanning tree
+PRIMS:
+ #include<iostream.h>
+#include<conio.h>
+int n;
+class single
+{
+ int v,cost[10][10],i,j,s[10],e[10],near1[10],t[10][3],m,minedge,k,l,mincost;
+ int jindex;
+ float dist[10];
+public:
+ void get();
+ void prim();
+ void display();
+};
+
+void single::get()
+{
+ m=1;
+ minedge=9999;
+ cout<<"\nEnter the no. of vertices\n";
+ cin>>n;
+ cout<<"\nEnter the Adjacenecy matrix\n";
+ for(i=1;i<=n;i++)
+  for(j=1;j<=n;j++)
+  {
+    cin>>cost[i][j];
+    if(cost[i][j]==0)
+     cost[i][j]=9999;
+    else
+     {
+  e[m]=cost[i][j];
+  if(e[m]<minedge)
+  {
+   minedge=e[i];
+   k=i;
+   l=j;
+  }
+      }
+   }
+}
+
+void single::prim()
+{
+ t[1][1]=k;
+ t[1][2]=l;
+ mincost=cost[k][l];
+ for(i=1;i<=n;i++)
+ {
+   if(cost[i][l]<cost[i][k])
+  near1[i]=l;
+   else
+  near1[i]=k;
+ }
+
+ near1[k]=near1[l]=0;
+ int minj=9999;
+ for(i=2;i<=n-1;i++)
+ {
+  minj=9999;
+  for(j=1;j<=n;j++)
+  {
+    if(near1[j]!=0)
+    {
+   if(cost[j][near1[j]]<minj)
+   {
+    minj=cost[j][near1[j]];
+    jindex=j;
+   }
+    }
+   }
+ t[i][1]=jindex;
+ t[i][2]=near1[jindex];
+ mincost=mincost+cost[jindex][near1[jindex]];
+ near1[jindex]=0;
+
+ for(int k1=1;k1<=n;k1++)
+ {
+   if(near1[k1]!=0 && cost[k1][near1[k1]]>cost[k1][jindex])
+  near1[k1]=jindex;
+ }
+      }
+cout<<"\n Mincost ="<<mincost;
+}
+
+void single::display()
+{
+ cout<<endl;
+ cout<<"\nMinimum Spanning Tree Path as follow\n";
+ cout<<t[1][1]<<"->"<<t[1][2];
+ for(i=2;i<n;i++)
+ {
+  cout<<"->";
+  cout<<t[i][1];
+ }
+}
+void main()
+{
+ single d;
+ clrscr();
+ d.get();
+ d.prim();
+ d.display();
+ getch();
+}
+
+KRUSKAL:
+ #include<iostream.h>
+ #include<conio.h>
+int parent[10];
+ class kruskal
+ {
+  int mincost;
+  int i,j,min ,k,n,ne,cost[10][10],a,b,u,v;
+  public:
+  void get();
+  kruskal()
+  {
+  ne=1;
+  mincost=0;
+  }
+  int find(int);
+  int uni(int,int);
+ };
+ int kruskal::find(int i)
+ {
+  while(parent[i])
+  i=parent[i];
+  return i;
+ }
+ int kruskal::uni(int i ,int j)
+ {
+
+ if(i != j)
+ {
+ parent[j]=i;
+ return 1;
+ }
+ return 0;
+ }
+ void kruskal::get()
+ {
+ cout<<"\n enter no of vertices";
+ cin>>n;
+ cout<<"\n enter cost matrix";
+ for (i=1;i<=n;i++)
+ {
+ for(j=1;j<=n;j++)
+ {
+ cin>>cost[i][j];
+ if(cost[i][j]==0)
+  cost[i][j]=999;
+ }}
+ cout<<"\nThe edges of Minimum Cost Spanning Tree are\n\n";
+ while(ne<n)
+ {
+  for(i=1,min=999;i<=n;i++)
+  {
+   for(j=1;j<=n;j++)
+   {
+    if(cost[i][j]<min)
+    {
+     min=cost[i][j];
+     a=u=i;
+     b=v=j;
+    }
+   }
+  }
+  u=find(u);
+  v=find(v);
+  if(uni(u,v))
+  {
+   cout<<"\n"<<ne++<<" edge ("<<a<<","<<b<<") ="<<min<<"\n";
+   mincost +=min;
+  }
+  cost[a][b]=cost[b][a]=999;
+ }
+ cout<<"\n\tMinimum cost = "<<mincost<<"\n";
+ } /*
+ void kruskal::get()
+ {
+ cout<<"\n enter no of vertices";
+ cin>>n;
+ cout<<"\n enter cost matrix";
+ for (i=1;i<=n;i++)
+ {
+ for(j=1;j<=n;j++)
+ {
+ cin>>a[i][j];
+ if(a[i][j]==0)
+  a[i][j]=999;
+ }}
+ while(ne<n)
+ {
+
+ for(i=1,min=999;i<=n;i++)
+ {
+ for(j=1;j<=n;j++)
+ {
+  if(a[i][j]<min)
+  {
+  min=a[i][j];
+  p=u=i;
+  q=v=j;
+  }
+ }
+ }
+ u=find(u);
+ v=find(v);
+ if(uni(u,v))
+ {
+ cout<<"\n "<<"edge("<<p<<"to "<<q<<":-"<<min;
+ mincost+=min;
+ }
+ a[p][q]=a[q][p]=999;
+
+ }
+ cout<<"\n min cost"<<mincost;
+ } */
+ void main()
+ {
+ clrscr();
+ kruskal k;
+ k.get();
+ getch();
+ }
+
+Practical 15
+Different operation on BST  
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+class BST
+{
+ public:
+ struct node
+ {
+  int data;
+   node * left , *right;
+ };
+ struct node *root;
+ BST()
+ {
+  root=NULL;
+ }
+ void insert( node **temp, node *r);
+ void preorder(node *r);
+ void postorder (node *r);
+ void inorder(node *r);
+ void largest(node *r);
+ void smallest(node *r);
+ void count(node *r,int &c);
+ void search( node *r, int num);
+};
+void BST:: insert(node ** temp, node *r)
+{
+ if(*temp==NULL)
+ {
+  *temp=r;
+  return;
+ }
+ else if(r->data < (*temp)->data)
+ {
+    insert(&((*temp)->left),r);
+ }
+ else
+ {
+     insert(&((*temp)->right),r);
+ }
+}
+void BST::inorder(node *r) //LDR
+{
+ if(r!=NULL)
+ {
+  inorder(r->left);
+  cout<< r->data<<"\t";
+  inorder(r->right);
+ }
+ else
+ return;
+}
+void BST::preorder(node *r) //DLR
+{
+ if(r!=NULL)
+ {
+  cout<< r->data<<"\t";
+  preorder(r->left);
+  preorder(r->right);
+ }
+ else
+   return;
+}
+void BST::postorder(node *r) //LRD
+{
+ if(r!=NULL)
+ {
+  postorder(r->left);
+  postorder(r->right);
+  cout<< r->data<<"\t";
+ }
+ else
+   return;
+}
+void BST::largest(node *r)
+{
+ while( r->right!=NULL)
+   r= r->right;
+ cout<<" largest node is "<<r->data;
+ }
+void BST::smallest(node *r)
+{
+ while( r->left!=NULL)
+   r= r->left;
+ cout<<" smallest node is "<<r->data;
+ 
+}
+void BST::count(node *r, int & c)
+{
+if(r!=NULL)
+{
+ count(r->left,c);
+ count(r->right,c);
+ c++;
+}
+}
+void BST:: search(node *r, int num)
+{
+ if(r==NULL)
+ {
+  cout<<" node not found";
+  return;
+ }
+ else if(num<r->data)
+ {
+  search(r->left, num);
+ }
+ else if(num>r->data)
+ {
+  search(r->right,num);
+  }
+  else
+  {
+   cout<<"\n element found";
+   return;
+  }
+}
+ 
+void main()
+{
+ clrscr();
+ BST b1,b2;
+ node **temp;
+ int ch,num;
+ cout<<"\1:insert 2: preoder 3: post order 4: inorder 5:largest  6:smallest  7: count 8: search 9:exit";
+ do
+ {
+  cout<<"\n enter choice";
+  cin>>ch;
+  switch (ch)
+  {
+   case 1: cout<<"\n enter node";
+        	   cin>>num;
+ 
+        	   temp=&(b2.root);
+        	   node *r=new node;
+        	   r->data=num;
+        	   r->left=NULL;
+        	   r->right=NULL;
+        	   b2.insert(temp,r);
+   break;
+   case 2: b1=b2;
+        	   b2.preorder(b1.root);
+   break;
+   case 3: b1=b2;
+        	   b2.postorder(b1.root);
+   break;
+   case 4: b1=b2;
+        	   b2.inorder(b1.root);
+   break;
+   case 5:b1=b2;
+        	  b2.largest(b1.root);
+   break;
+   case 6:b1=b2;
+        	  b2.smallest(b1.root);
+   break;
+  case 7: b1=b2;
+  int c=0;
+  b2.count(b1.root,c);
+  cout<<"\n no of nodes"<<c;
+  break;
+  case 8:
+  cout<<"\n enter node to be search";
+  cin>>num;
+  b1=b2;
+  b2.search(b1.root,num);
+  break;
+    case 9:exit(0);
+  }
+  }while(ch!=9);
+   getch();
+}
+
+
+Practical 16
+Heap tree
+#include<iostream.h>
+#include<process.h>
+#include<conio.h>
+class heaptree
+{
+        	int n,heap[20],i,parent,data,last;
+public:
+        	heaptree()
+        	{
+        	 last=-1;
+        	}
+        	void get()
+        	{
+                    	cout<<"\nEnter Range:";
+        	cin>>n;
+ 
+        	for(i=0;i<n;i++)
+        	heap[i]=0;
+        	}
+ 
+void insertheap()
+{
+        	if(last>=n-1)
+        	 cout<<"\n heap is full";
+        	 else
+        	 {
+ 
+        	  cout<<"\nEnter the element:";
+        	  cin>>data;
+        	  last++;
+        	  heap[last]=data;
+        	  reheapup(last);
+        	  }
+}
+void reheapup(int newindex)
+{
+        	 if(newindex!=0)
+        	 {
+        	   parent=(newindex-1)/2;
+        	   if(heap[newindex]>=heap[parent])
+        	     {
+        	   	int temp;
+        	   	temp=heap[newindex];
+        	   	heap[newindex]=heap[parent];
+        	   	heap[parent]=temp;
+        	   	reheapup(parent);
+        	     }
+        	     else
+        	      return;
+        	 }
+        	 return;
+}
+void display()
+{
+        	cout<<"\nHeap Tree:";
+        	for(i=0;i<n;i++)
+        	 cout<<heap[i]<<"\t";
+}
+};
+void main()
+{
+        	clrscr();
+ 
+        	int ch;
+        	heaptree h;
+        	h.get();
+        	cout<<"\n 1:insert 2:display";
+        	do
+        	{
+        	cout<<"\n enter choice";
+        	cin>>ch;
+        	switch(ch)
+        	{
+        	case 1: h.insertheap();break;
+        	case 2: h.display();break;
+        	case 3: exit(0);
+        	}
+        	}while(ch!=3);
+        	getch();
+}
+
+
+
+Practical 17
+To implement  polynomial addition using link list
+#include<iostream.h>
+#include<conio.h>
+class polyadd
+{
+ struct node
+ {
+  float coeff;
+  int exp;
+  node *link;
+ }*p;
+ public:
+ polyadd()
+ {
+  p=NULL;
+ }
+ void poly_append(float c,int e);
+ void display();
+ void add(polyadd & l1, polyadd & l2);
+};
+void polyadd :: poly_append(float c,int e)
+{
+  node *temp ,
+  *temp1;
+  temp1=p;
+  temp=new node;
+  temp->coeff=c;
+  temp->exp=e;
+  temp->link=NULL;
+  if(p==NULL)
+  {
+   p=temp;
+  }
+  else
+  {
+   while(temp1->link!=NULL)
+      temp1=temp1->link;
+   temp1->link=temp;
+  }
+}
+void polyadd:: display()
+{
+ node *temp=p;
+ int f=0;
+ while(temp!=NULL)
+ {
+  if(f!=0)
+  {
+   if(temp->coeff>0)
+     cout<<"+";
+   else
+    cout<<" ";
+  }
+  if(temp->exp!=0)
+     cout<<temp->coeff<<"x^"<<temp->exp;
+  else
+     cout<<temp->coeff;
+  temp=temp->link;
+  f=1;
+ }
+}
+void polyadd:: add(polyadd &l1,polyadd &l2)
+{
+ node *z;
+ if(l1.p==NULL && l2.p==NULL)
+  return;
+ node *temp1,*temp2;
+ temp1=l1.p;
+ temp2=l2.p;
+ while(temp1!=NULL && temp2!=NULL)
+ {
+  if(p==NULL)
+  {
+   p=new node;
+   z=p;
+  }
+  else
+  {
+   z->link=new node;
+   z=z->link;
+  }
+  if(temp1->exp < temp2->exp)
+  {
+   z->coeff=temp2->coeff;
+   z->exp=temp2->exp;
+   temp2=temp2->link;
+  }
+  else
+  {
+   if(temp1->exp>temp2->exp)
+   {
+   z->coeff=temp1->coeff;
+   z->exp=temp1->exp;
+   temp1=temp1->link;
+   }
+   else
+
+   {
+   if(temp1->exp==temp2->exp)
+   {
+    z->coeff=temp1->coeff+temp2->coeff;
+   z->exp=temp1->exp;
+   temp1=temp1->link;
+   temp2=temp2->link;
+   }
+   }
+  }
+  }
+  while(temp1!=NULL)
+  {
+    if(p==NULL)
+    {
+     p=new node;
+     z=p;
+    }
+    else
+    {
+     z->link=new node;
+     z=z->link;
+    }
+    z->coeff=temp1->coeff;
+    z->exp=temp1->exp;
+    temp1=temp1->link;
+  }
+  while(temp2!=NULL)
+  {
+    if(p==NULL)
+    {
+     p=new node;
+     z=p;
+    }
+    else
+    {
+     z->link=new node;
+     z=z->link;
+    }
+    z->coeff=temp2->coeff;
+    z->exp=temp2->exp;
+    temp2=temp2->link;
+  }
+  z=z->link;
+}
+void main()
+{
+    polyadd p1;
+    p1.poly_append(3,5);
+    p1.poly_append(1.5,4);
+    p1.poly_append(2,3);
+    p1.poly_append(5,0);
+    cout<<"\n first polynomial is:";
+    p1.display();
+
+    polyadd p2;
+    p2.poly_append(5,6);
+    p2.poly_append(1,4);
+    p2.poly_append(21,3);
+    p2.poly_append(8,0);
+    cout<<"\n second polynomial is:";
+    p2.display();
+
+    polyadd p3;
+    p3.add(p1,p2);
+    cout<<"\n add of poly p1 & p2 is ";
+    p3.display();
+    getch();
+}
+
+
+Practical 18
+To implement hashing methods and collision resolution techniques
+1.    Modulo Division
+2.  	Digit Extraction
+3.  	Fold shift
+4.  	Fold Boundary
+5.  	Linear Probe for Collision Resolution
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdlib.h>
+ 
+ 
+class hash
+{
+        	long int givenkeys[5], list[100];
+ 
+        	public:
+                    	void accept();
+                    	void modular_division();
+                    	void digit_extraction();
+                    	void fold_shift();
+                    	void fold_boundary();
+                    	void make_null();
+                    	void print();
+};
+void hash::print()
+{
+        	for(int i=0;i<100;i++)
+        	{
+                    	if(list[i]!=0)
+                                	cout<<"List ["<<i<<"] = "<<list[i]<<endl;
+        	}
+}
+void hash:: accept()
+{
+        	make_null();
+        	for(int i=0;i<5;i++)
+        	{
+                    	cout<<"Enter Key ";
+                    	cin>>givenkeys[i];
+        	}
+}
+void hash::make_null()
+{
+        	for(int i=0;i<100;i++)
+        	{
+                    	list[i]=0;
+        	}
+}
+ 
+void hash::modular_division()
+{
+        	cout<<" Enter 4 Digit Keys \n";
+        	accept();
+        	for(int i=0;i<5;i++)
+        	{
+ 
+                    	if(list[(givenkeys[i]%100)+1]==0)  //list[13]==13
+                                	list[(givenkeys[i]%100)+1]=givenkeys[i];
+                    	else
+                    	{
+                                	int temp=(givenkeys[i]%100)+1;
+                                	while(list[temp]!=0)
+                                            	temp++;
+                                	list[temp]=givenkeys[i];
+                    	}
+        	}
+ 
+        	print();
+}
+ 
+void hash::digit_extraction()
+{
+        	cout<<"Enter 3 Digit Key "<<endl;  
+        	accept();
+        	int pos1,pos2;
+        	cout<<"Enter 2 postions ";
+        	cin>>pos1>>pos2;
+        	for(int i=0;i<5;i++)
+        	{
+                    	int add=0;
+                    	int d1=givenkeys[i]/100;    	
+                    	int d2=(givenkeys[i]/10)%10;
+                    	int d3=(givenkeys[i])%10;   	
+ 
+                    	switch(pos1)
+                    	{
+                                	case 1: add=add+(d1*10);
+                                            	break;
+                                	case 2: add=add+(d2*10);
+                                            	break;
+                                	case 3: add=add+(d3*10);
+                                            	break;
+                    	}
+                    	switch(pos2)
+                    	{
+                                	case 1: add=add+d1;
+                                            	break;
+                                	case 2: add=add+d2;
+                                            	break;
+        	                    	case 3: add=add+d3;
+                                            	break;
+                    	}
+                    	if(list[add]==0)
+                                	list[add]=givenkeys[i];
+                    	else
+                    	{
+                                	int temp=add;
+                                	while(list[temp]!=0)
+                                	  temp++;
+                                	list[temp]=givenkeys[i];
+                    	}
+ 
+        	}//end for loop
+        	print();
+}
+void hash::fold_shift()
+{
+        	cout<<"Enter 4 Digit Value "<<endl; 
+        	accept();
+        	for(int i=0;i<5;i++)
+        	{
+                    	int p1,p2;
+                    	p1=givenkeys[i]/100;
+                    	p2=givenkeys[i]%100; 
+ 
+                    	if(list[p1+p2]==0)
+                                	list[p1+p2]=givenkeys[i];
+                    	else
+                    	{
+                                	int temp=p1+p2;
+                                	while(list[temp]!=0)
+                                	  temp++;
+                                	list[temp]=givenkeys[i];
+                    	}
+ 
+        	}
+        	print();
+}
+void hash::fold_boundary()
+{
+        	make_null();
+        	cout<<"Enter 4 Digit Keys "<<endl;  
+        	accept();
+        	for(int i=0;i<5;i++)
+        	{
+                    	int n1,n2;
+                    	n1=givenkeys[i]/100; 
+                    	n1=(n1%10)*10+(n1/10);
+                    	n2=givenkeys[i]%100;
+                    	n2=(n2%10)*10+(n2/10);
+                    	if(list[n1+n2]==0)
+                                	list[n1+n2]=givenkeys[i];
+                    	else
+                    	{
+                                	int temp=n1+n2;
+                                	while(list[temp]!=0)
+                                	  temp++;
+                                	list[temp]=givenkeys[i];
+                    	}
+ 
+        	}
+        	print();
+}
+void main()
+{
+        	int menu;
+        	hash h;
+        	do
+        	{
+                    	clrscr();
+                    	cout<<"1. Modular Divison"<<endl
+                    	<<"2. Digit Extraction"<<endl
+                    	<<"3. Fold Shift "<<endl
+                    	<<"4. Fold Boundary"<<endl
+                    	<<"5. Exit"<<endl
+                    	<<" Enter Your Choice ";
+                    	cin>>menu;
+                    	switch(menu)
+                    	{
+ 
+                    	 case 1:
+                                	h.modular_division();
+                                	break;
+                    	 case 2:
+        	                    	h.digit_extraction();
+                                	break;
+                    	 case 3:
+                                	h.fold_shift();
+                                	break;
+                    	 case 4:
+                                	h.fold_boundary();
+                                	break;
+                    	 case 5:
+                                	exit(0);
+                    	 default:
+                                	cout<<"Invalid Choice !"<<endl;
+                    	}
+                    	getche();
+        	}while(1);
+ 
+}
