@@ -1,0 +1,1998 @@
+JAVA PRACTICALS---https://drive.google.com/drive/folders/1XFfY9tcDoe8H7gsqzdhY1Wgwcb1wAHrr?usp=sharing
+PRACTICAL 1:
+1. GENERIC
+package demo;
+class Demo1<T>
+{
+	private T d;
+	public Demo1(T d) {
+		this.d=d;
+	}
+	public T getData()
+	{
+		return d;
+	}
+}
+public class demo{
+	public static void main(String[] args) {
+		Demo1<Integer> d1=new Demo1<>(137);
+		System.out.println(d1.getData());
+		Demo1<String> d2=new Demo1<>("\t Student Siddhi Kotre submitted "+" assignment before due time\t");
+		System.out.println(d2.getData());
+		Demo1<Float> d3=new Demo1<>(11.59f);
+		System.out.println(d3.getData());
+
+	}
+}
+
+2. Check Equality of two values
+package demo;
+public class demo {
+	public static <T> boolean areEqual(T value1, T value2) {
+		
+	 return value1.equals(value2);
+	}
+	public static void main(String[] args) {
+		System.out.println("Siddhi Kotre 50");
+		int num1 = 42;
+int num2 = 42;
+boolean intResult = areEqual(num1, num2);
+System.out.println("The Integers are equal? " + intResult);
+		String str1 = "Hello";
+String str2 = "World";
+boolean strResult = areEqual(str1, str2);
+System.out.println("The Strings are equal? " + strResult);
+	}
+}
+
+
+3.Wildcards
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+	static void displayUpperBounds(List<? extends Number> list) {
+		System.out.println(list);
+	}
+	static void displayLowerBounds(List<? extends Number> list) {
+		System.out.println(list);
+	}
+	static void displayUnBounds(List<? extends Number> list) {
+		System.out.println(list);
+	}
+	public static void main(String[] args) {
+		List<Integer> list1 = Arrays.asList(2,4,5,6);
+		displayUpperBounds(list1);
+		List<Integer> list2 = Arrays.asList(1,2,3,5);
+		displayUpperBounds(list2);
+		List<Double> list3 = Arrays.asList(2.3,2.4,2.5,2.6);
+		displayUpperBounds(list3);
+	}
+
+}
+
+4.List using foreach 
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+
+	public static void main(String[] args) {
+		List<String> l1 = new ArrayList<String>();
+		l1.add("Mango");
+		l1.add("Cherry");
+		l1.add("Watermelon");
+		
+		for(String fruits:l1) {
+			System.out.println(fruits);
+		}
+	}
+
+}
+
+5. List Forward and Backward(List Iterator)
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+
+	public static void main(String[] args) {
+		List<Integer> l1 = Arrays.asList(1,2,3,4,5);
+		ListIterator<Integer> numInt= l1.listIterator();
+		System.out.println("Forward");
+		while(numInt.hasNext()) {
+			System.out.println(numInt.next());
+		}
+		System.out.println("Backward");
+		while(numInt.hasPrevious()) {
+			System.out.println(numInt.previous());
+		}
+	}
+
+}
+
+6. Set Interface
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+
+	public static void main(String[] args) {
+	Set<String> lset = new HashSet<>();
+	lset.add("C++");
+	lset.add("Java");
+	lset.add("Python");
+	System.out.println("Forward");
+	Iterator<String> itr = lset.iterator();
+	
+	while(itr.hasNext()) {
+		System.out.println(itr.next());
+	}	
+	System.out.println(" \n");
+	List<String> l1 = new ArrayList<>(lset);
+	Collections.reverse(l1);
+	System.out.println("Reverse");
+		for(String language:l1) {
+			System.out.println(language);
+}
+	}
+	
+
+}
+
+7. Set interface-Add, Insert, Remove, Search
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+
+	public static void main(String[] args) {
+		int search_item =4;
+		Set<Integer> set1 = new HashSet<>();
+		set1.add(4);
+		set1.add(5);
+		set1.add(6);
+		set1.add(7);
+		set1.add(9);
+		System.out.println("Set1"+set1);
+		boolean result = set1.contains(search_item);
+		System.out.println("Item found: "+result);
+		
+		if(result) {
+			set1.remove(search_item);
+		}
+		System.out.println("After deleting the item"+set1);
+		Set<Integer> set2 = new HashSet<>(set1);
+		Iterator<Integer> itr = set2.iterator();
+		System.out.println("Set2:regular Traversing");
+		while(itr.hasNext()) {
+			System.out.println(itr.next());
+		}
+	}
+}
+
+
+
+8. Map interface - Add, Remove, Search,  Get value of Specified key, Insert map, Print all keys and values pair of the map
+
+package demo;
+import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+
+public class demo {
+
+	public static void main(String[] args) {
+		Map<Integer, String> studentrecords = new HashMap<>();
+		studentrecords.put(5,"Siddhi");
+		studentrecords.put(15,"Harry");
+		studentrecords.put(25,"Louis");
+		studentrecords.put(45,"Zayn");
+		studentrecords.put(6,"Sammy");
+		studentrecords.put(8, "John");
+		
+		System.out.println("Records of group: ");
+		System.out.println("Map: "+studentrecords);
+		
+		boolean isrollno = studentrecords.containsKey(6);
+		if(isrollno) {
+			studentrecords.remove(6);
+		}
+		System.out.println("After removal of records"+studentrecords);
+		
+		
+		System.out.println("Displaying records: ");
+		String studentname = studentrecords.get(8);
+		System.out.println(8+" "+studentname);
+		
+		Map <Integer, String> newstudent = new TreeMap<>(studentrecords);
+		newstudent.remove(8);
+		System.out.println("Traversing:"+newstudent);
+		
+		for(Map.Entry<Integer, String> entry: newstudent.entrySet()) {
+			System.out.println("Key = "+entry.getKey()+", value "+entry.getValue());
+		}
+		
+	}
+}
+
+9. Lambda Expression
+package java_program;
+interface Sayable
+
+{
+
+public String say();
+
+}
+public class program9 {
+
+	public static void main(String[] args) {
+		Sayable s=()->{
+
+			return "Hello world";
+
+			};
+
+			System.out.println(s.say());
+
+	}
+
+}
+
+10. One paramater Lambda
+package java_program;
+interface Sayable
+{
+	public String say(String name);
+}
+public class program10 {
+
+	public static void main(String[] args) {
+		Sayable s1=(name)->{
+			return "Hello, "+name;
+			};
+			System.out.println(s1.say("Siddhi Kotre"));
+	}
+}
+
+11. Two parameter Lambda
+package java_program;
+interface Arithmetic
+{
+	public int add(int a, int b);
+
+}
+public class program9 {
+
+	public static void main(String[] args) {
+		Arithmetic arth = (a, b) -> {
+			return a+b ;
+			};
+			int sumOfNumbers = arth.add(5,6);
+			System.out.println("Siddhi Kotre Rollno:50 ");
+
+			System.out.println(sumOfNumbers);
+	}
+
+}
+
+
+12. Conversion Lambda
+package java_program;
+interface TemperatureInterface {
+public void fahrenheitToCelsius(double fahrenheit);
+}
+interface DistanceInterface {
+public void kilometersToMeters(double kilometers);
+}
+public class program12 {
+
+	public static void main(String[] args) {
+		System.out.println("Siddhi Kotre Rollno:50 ");
+
+		TemperatureInterface temp = (fahrenheit) ->
+		{
+		System.out.println((fahrenheit - 32) * (5.0 / 9.0));
+		};
+		DistanceInterface dist = (kilometers) ->{
+		System.out.println(kilometers*1000);
+		};
+		temp.fahrenheitToCelsius(97.6);
+		dist.kilometersToMeters(6.3);
+	}
+
+}
+
+13. Lambda with or without return keyword
+package java_program;
+interface Arithmetic2
+{
+public int add(int a,int b);
+}
+public class program13 {
+
+	public static void main(String[] args) {
+		System.out.println("Siddhi Kotre Rollno:50 ");
+
+		Arithmetic2 arith2=(a,b)->{
+			return (a+b);
+			};
+
+			int sum=arith2.add(10,20);
+			System.out.println("Sum of two numbers"+sum);
+
+			Arithmetic2 arth = (a, b) -> a+b;
+			int sumOfNumbers = arth.add(5,6);
+			System.out.println(sumOfNumbers);
+
+	}
+
+}
+
+
+14.Lambda Expression to concatenate two strings
+package java_program;
+import java.util.*;
+@FunctionalInterface
+interface BuildString
+{
+public String concatenate(String str1, String str2);
+}
+public class program14 {
+	public static void main(String[] args) {
+		System.out.println("Siddhi Kotre Rollno:50 ");
+
+		BuildString string = (str1, str2) -> str1+str2;
+		String name = string.concatenate("xyz ","abc");
+		System.out.println(name);
+
+	}
+
+}
+
+
+PRACTICAL 2:JSP 
+1. Loan Calculator
+Cal.jsp
+<%@ page language="java" contentType="text/html;
+charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>calculator</title>
+</head>
+<body>
+<fieldset style="width: 30%; border: 3px solid black">
+<legend>Loan calculator</legend>
+<form action="calculate.jsp" method="post">
+<table>
+<tr>
+<td>Loan Amount:</td>
+<td><input type="text"
+name="pamount" /></td>
+</tr>
+<tr>
+<td>Years</td>
+<td><input type="text" name="years"/></td>
+</tr>
+<tr>
+<td>
+<td>
+<td><input type="submit"
+value="calculate" /></td>
+</tr>
+</table>
+</form>
+</fieldset>
+</body>
+</html>
+
+
+
+
+Calculate.jsp
+<%@ page language="java" contentType="text/html;
+charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%@include file="cal.jsp"%>
+<br><br>
+<%
+double amount =
+Double.parseDouble(request.getParameter("pamount"));
+int year =
+Integer.parseInt(request.getParameter("years"));
+double rate = 0.0;
+double interest = 0.0;
+if (year >= 1 || year <= 7) {
+interest = (amount * 5.35) / 100;
+out.println("Interest =" + interest);
+out.println("\n" + "EMI=" + (amount + interest) /
+(year * 12));
+} else if (year >= 8 || year <= 15) {
+interest = (amount * 5.5) / 100;
+out.println("Interest =" + interest);
+out.println("\n" + "EMI=" + (amount + interest) /
+(year * 12));
+} else if (year >= 16 || year <= 30) {
+interest = (amount * 5.75) / 100;
+out.println("Interest =" + interest);
+out.println("\n" + "EMI=" + (amount + interest) /
+(year * 12));
+} else {
+out.println("Enter Proper year");
+}
+%>
+</body>
+</html>
+
+2. Session tracking
+LoginUser.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<body>
+<fieldset style="width: 30%; border: 3px solid black">
+<legend>Login</legend>
+<form action="LoginUser.jsp" method="post">
+	<table>
+	<tr>
+	<td>User Name:</td>
+	<td><input type="text" name="name" /></td>
+	</tr>
+<tr>
+	<td>Password</td>
+	<td><input type="password" name="pass" /></td>
+	</tr>
+	<tr>				
+	<td><input type="submit" value="Login" /></td>
+	</tr>
+	</table>
+	</form>
+	</fieldset>
+</body>
+</body>
+</html>
+
+
+LoginUser.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" %>
+    <%@ page import="java.sql.*"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+String I_name=request.getParameter("name");
+String I_Password=request.getParameter("pass");	
+Class.forName("com.mysql.cj.jdbc.Driver"); 
+Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/college","root","root"); 
+String query="select * from student where s_name=? and s_password=?";
+PreparedStatement ps=conn.prepareStatement(query);
+ps.setString(1,I_name);
+ps.setString(2,I_Password);
+ResultSet rs=ps.executeQuery();
+if (rs.next())
+{		
+	    session.setAttribute("name",I_name);
+		response.sendRedirect("Dashboard.jsp");
+		
+}
+else
+{
+	response.sendRedirect("Login.jsp");
+}
+%>
+</body>
+</html>
+
+Dashboard.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DashBoard Section</title>
+</head>
+<body>
+	<%
+	if (session.getAttribute("name") != null) {
+	%>
+
+	<h1 style="text-align: center">
+		Welcome "<%=session.getAttribute("name")%>"
+	</h1>
+	<br>
+	<a style="display: block; text-align: right" href="Logout.jsp">Click
+		here to Logout</a>
+	<%
+	} else {
+		response.sendRedirect("Login.jsp");
+	}
+	%>
+</body>
+</html>
+
+
+Logout.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>You are logged out</title>
+</head>
+<body>
+	<%
+	session.invalidate();
+	response.sendRedirect("Login.jsp");
+	%>
+</body>
+</html>
+
+3. Custom tags 
+myTagHandler.java--->src/main/java
+package demo;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+public class myTagHandler extends TagSupport 
+{ 
+@Override 
+public int doStartTag() throws JspException { 
+// TODO Auto-generated method stub 
+try { 
+JspWriter out=pageContext.getOut(); 
+out.print("<h1> Today Date</h1>"); 
+out.print(""+ new java.util.Date()); 
+} 
+catch(Exception e) {
+	
+} 
+return SKIP_BODY; 
+} 
+}
+
+Mylib.tld--->WEB-INF ⇒ New ⇒ File ⇒ MyLibrary.tld
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd"> 
+<taglib> 
+<tlib-version>1.0</tlib-version> 
+<jsp-version>2.0</jsp-version> 
+<short-name>testing</short-name> 
+<uri>http://www.tomcat-demo.com/testing</uri> 
+<description>This is a demonstration tag 
+library</description> 
+<tag> 
+<name>display</name> 
+<tag-class>demo.myTagHandler</tag-class> 
+</tag> 
+</taglib> 
+
+Program.jsp
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="/WEB-INF/mylib.tld" prefix="d1"%> 
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="ISO-8859-1"> 
+<title>Custom Tags</title> 
+</head>
+<body> <h1>Siddhi Kotre</h1>
+<d1:display></d1:display> </body> 
+</html>
+
+PRACTICAL 3:SPRING
+1. Spring application to print Hello World.
+Helloworld.java
+package program1;
+
+public class helloworld {
+	public void display() { 
+		System.out.println("Siddhi Kotre, Rollno:50"); 
+		System.out.println("Hello World!"); 
+
+}
+}
+
+
+Mainapp.java
+package program1;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class mainapp {
+	public static void main(String[] args) { 
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+		helloworld obj = (helloworld)context.getBean("hw"); 
+		 
+		obj.display(); 
+		} 
+
+}
+
+
+Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+<bean id="hw" class="program1.helloworld"> 
+</bean> 
+
+</beans>
+
+2.Dependency injection via setter method
+Account.java
+package program2;
+
+public class account {
+	private int accNo; 
+	private String accName;
+	public int getAccNo() {
+		return accNo;
+	}
+	public void setAccNo(int accNo) {
+		this.accNo = accNo;
+	}
+	public String getAccName() {
+		return accName;
+	}
+	public void setAccName(String accName) {
+		this.accName = accName;
+	} 
+
+}
+
+
+
+
+
+
+
+
+Mainapp.java
+package program2;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class mainApp {
+
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+		account acc = (account)context.getBean("Account");
+		System.out.println("Account No = " + acc.getAccNo()); 
+		System.out.println("Account Name = " + acc.getAccName());
+		} 
+
+	}
+
+
+Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+
+ 
+<bean id="Account" class="program2.account"> 
+<property name="accNo" value="50"></property> 
+<property name="accName" value="Siddhi Kotre"></property> </bean> 
+
+</beans>
+
+3.Dependency injection via Constructor
+Employee.java
+package constructor;
+public class employee {
+	private String name;
+	private int age;
+	private String country;
+	
+public employee(String name,int age, String country) {
+	this.name =name;
+	this.age=age;
+	this.country= country;
+}
+	public String toString(){
+	return "Employee name is "+name+" and age of employee is "+age+" years old and lives in "+country;
+}
+	
+	}
+
+
+
+test.java
+package constructor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class test {
+public static void main(String[] args) {
+ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+employee employee=(employee)context.getBean("e1");
+System.out.println(employee);
+}
+}
+
+Bean.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="e1" class="constructor.employee">
+<constructor-arg index="0" value="Siddhi"></constructor-arg>
+<constructor-arg index="1" value="21"></constructor-arg>
+<constructor-arg index="2" value="India"></constructor-arg>
+</bean>
+</beans>
+
+
+ORRRRRRRRRRRRR
+
+Fullname.java
+package module__3;
+ 
+public class fullname {
+private String firstname;
+private String lastname;
+ 
+public fullname(String firstname, String lastname)
+{
+​super();
+​this.firstname = firstname;
+​this.lastname = lastname;
+}
+public String toString()
+{
+​return "Fullname [firstname="+firstname+" lastname="+lastname+"]";
+​
+}
+}
+ 
+Employee.java
+ 
+package module__3;
+ 
+public class employee 
+{
+​private int id;
+​private fullname fn1;
+​
+​public employee(int id, fullname fn1)
+​{
+​​super();
+​​this.id=id;
+​​this.fn1 = fn1;
+​}
+ 
+​
+​public String toString()
+​{
+​​return "Employee[id=" +id+","+fn1+"]";
+​​
+​}
+}
+ 
+App.java
+package module__3;
+import org.springframework.context.ApplicationContext; 
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class app { 
+public static void main(String[] args) { 
+// TODO Auto-generated method stub 
+ApplicationContext context = new ClassPathXmlApplicationContext("config3.xml"); 
+employee obj = (employee) context.getBean("Emp"); 
+//This getBean() method uses bean ID to return a generic object, 
+System.out.println(obj.toString()); 
+} 
+}
+ 
+Config3.xml
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+​xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+​xmlns:context="http://www.springframework.org/schema/context"
+​xmlns:jee="http://www.springframework.org/schema/jee"
+​xmlns:lang="http://www.springframework.org/schema/lang"
+​xmlns:p="http://www.springframework.org/schema/p"
+​xmlns:task="http://www.springframework.org/schema/task"
+​xmlns:util="http://www.springframework.org/schema/util"
+​xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+​​http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+​​http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+​​http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.0.xsd
+​​http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+​​http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+​<bean id="Emp" class="module__3.employee">
+<constructor-arg index="0" value="28"></constructor-arg>
+<constructor-arg>
+<ref bean="f1"/>
+</constructor-arg>
+</bean>
+<bean id="f1" class="module__3.fullname">
+<constructor-arg index="0" value="Jyoti"></constructor-arg>
+<constructor-arg index="1" value="Gupta"></constructor-arg>
+ </bean> 
+</beans>
+
+PRACTICAL 4: SPRING AOP----9 LibraryFiles--4 files
+1. Before advice, After advice
+Student.java
+package aopp;
+public class Student {
+	 private int id;
+	 private String name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void display()
+	 {
+		 System.out.println("ID "+id);
+		 System.out.println("Name "+name); 
+	 }
+}
+
+Logging.java
+package aopp;
+public class Logging {
+	public void beforeadvice()
+	{
+		System.out.println("Student Data");
+	}
+	public void afteradvice()
+	{
+		System.out.println("Above data is of required student");
+	}
+	}
+
+Bean.xml
+<beans xmlns = "http://www.springframework.org/schema/beans"
+ xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:p="http://www.springframework.org/schema/p"
+ xmlns:aop = "http://www.springframework.org/schema/aop"
+ xsi:schemaLocation = "http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<bean id ="stud" class="aopp.Student">
+ <property name="id" value="50"></property>
+ <property name="name" value="Siddhi"></property>
+ </bean>
+ <bean id="log" class="aopp.Logging">
+ </bean>
+  <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+  <aop:config>
+  <aop:aspect id="logaspect" ref="log">
+ <aop:pointcut expression="execution(public void display())" id="pointcut1"/>
+         <aop:after method="afteradvice" pointcut-ref="pointcut1"/>
+         <aop:before method="beforeadvice" pointcut-ref="pointcut1"/>
+  </aop:aspect>
+</aop:config>
+  </beans>
+
+App.java
+package aopp;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
+Student s=(Student) context.getBean("stud");
+s.display();
+	}
+	}
+
+2. Around advice
+Student.java
+package aop;
+public class Student {
+	 private int id;
+	 private String name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	 public void display()
+	 {
+		 System.out.println("ID "+id);
+		 System.out.println("Name "+name);
+	 }
+	}
+
+Logging.java
+package aop;
+import org.aspectj.lang.ProceedingJoinPoint;
+public class Logging {
+    public void aroundadvice(ProceedingJoinPoint jp) throws Throwable {
+        System.out.println("Student data ");
+        jp.proceed();
+        System.out.println("Above data is of required student ");
+}
+}
+
+Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+ xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:p="http://www.springframework.org/schema/p"
+ xmlns:aop = "http://www.springframework.org/schema/aop"
+ xsi:schemaLocation = "http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<bean id="student" class="aop.Student">
+        <property name="id" value="50"></property>
+        <property name="name" value="Siddhi"></property>
+    </bean>
+    <bean id="logaspect" class="aop.Logging"></bean>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <aop:config>
+        <aop:aspect id="loggingaspect" ref="logaspect">
+            <aop:around method="aroundadvice" pointcut="execution(public void display())"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
+
+App.java
+package aop;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+	public static void main(String[] args) {
+		 ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+	        Student s = (Student) context.getBean("student");
+	        System.out.println("Around Advice:");
+	        System.out.println("--------------------");
+	        s.display();
+	}
+	}
+
+3. After-returning advice
+Student.java
+package demo;
+	 public class Student {
+		
+			 private int id;
+			 private String name;
+			public int getId() {
+				return id;
+			}
+			public void setId(int id) {
+				this.id = id;
+			}
+			public String getName() {
+				return name;
+			}
+			public void setName(String name) {
+				this.name = name;
+			}
+			
+			 public int display()
+			 {
+				 System.out.println("ID "+id);
+				 System.out.println("Name "+name);
+			 return 1;
+				
+			 }
+	 }
+
+
+
+
+Logging.java
+package demo;
+import org.aspectj.lang.ProceedingJoinPoint;
+public class logging {
+public void afterreturnadvice(Object retval) {
+System.out.println("Method got successfully executed");
+}
+}
+
+Config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:aop = "http://www.springframework.org/schema/aop"
+xsi:schemaLocation = "http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<bean id="student" class="demo.Student">
+<property name="id" value="50"></property>
+<property name="name" value="Siddhi"></property>
+</bean>
+<bean id="logaspect" class="demo.logging"></bean>
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+<aop:config>
+<aop:aspect id="loggingaspect" ref="logaspect">
+<aop:after-returning method="afterreturnadvice" returning="retval" pointcut="execution(public int display())"/>
+</aop:aspect>
+</aop:config>
+</beans>
+
+App.java
+package demo;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+ApplicationContext context = new ClassPathXmlApplicationContext("config.xml");
+Student s = (Student) context.getBean("student");
+System.out.println("After Returning Advice:");
+System.out.println("--------------------");
+s.display();
+}
+}
+
+4.After-throwing advice
+Student.java
+package aop3;
+public class Student {
+	private int age;
+		    public void validate(int age) {
+		        if (age < 18) {
+		            throw new ArithmeticException();
+		        } else {
+		            System.out.println("Valid Age");
+		        }
+		    }
+			public int getAge() {
+				return age;
+			}
+		public void setAge(int age) {
+		this.age = age;
+			}
+
+}
+
+
+
+Logging.java
+package aop3;
+public class Logging {
+	 public void afterexceptionadvice(Exception error) {
+	        System.out.println("Some Exception Occured");
+	        System.out.println(error);
+	    }
+
+}
+
+config3.xml
+<beans xmlns = "http://www.springframework.org/schema/beans"
+ xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:p="http://www.springframework.org/schema/p"
+ xmlns:aop = "http://www.springframework.org/schema/aop"
+ xsi:schemaLocation = "http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd
+ http://www.springframework.org/schema/aop
+ http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<bean id="student" class="aop3.Student">
+        <property name="age" value="50"></property>
+    </bean>
+    <bean id="logaspect" class="aop3.Logging"></bean>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+    <aop:config>
+     <aop:aspect id="loggingaspect" ref="logaspect">
+         <aop:after-throwing method="afterexceptionadvice" throwing="error" pointcut="execution(public void validate(..))"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
+
+App.java
+package aop3;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class App {
+
+	public static void main(String[] args) {
+		  ApplicationContext context = new ClassPathXmlApplicationContext("config3.xml");
+	        Student s = (Student) context.getBean("student");
+	        System.out.println("After throwing advice:");
+	        System.out.println("--------------------");
+	        s.validate(16);
+
+	}
+
+}
+
+
+
+5. Pointcut
+Student.java
+package aop;
+public class Student {
+	 private int id;
+	 private String name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void display()
+	 {
+		 System.out.println("ID: "+id);
+		 System.out.println("Name: "+name);
+		
+	 }
+}
+
+
+
+
+
+
+Logging.java
+package aop;
+public class Logging {
+public void beforeadvice() {
+System.out.println("Student Data");
+}
+public void afteradvice() {
+System.out.println("Above details of student");
+}
+}
+
+config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:aop = "http://www.springframework.org/schema/aop"
+xsi:schemaLocation = "http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd ">
+<bean id="student" class="aop.Student">
+<property name="id" value="50"></property>
+<property name="name" value="Siddhi"></property>
+</bean>
+<bean id="logaspect" class="aop.Logging"></bean>
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+<aop:config>
+<aop:aspect id="loggingaspect" ref="logaspect">
+<aop:pointcut expression="execution(public void display())" id="pointcut1"/>
+<aop:after method="afteradvice" pointcut-ref="pointcut1"/>
+<aop:before method="beforeadvice" pointcut-ref="pointcut1"/>
+</aop:aspect>
+</aop:config>
+</beans>
+
+
+
+
+
+
+
+
+App.java
+package aop;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("config5.xml");
+Student s = (Student) context.getBean("student");
+System.out.println("Pointcut:");
+System.out.println("--------------------");
+s.display();
+	}
+}
+
+
+PRACTICAL 5: SPRING JDBC
+https://drive.google.com/drive/folders/1GMm5YyPbJFa8nMYGMxBzAowvIBgbKSeR
+
+1. Insert, update and delete records
+
+show databases;
+create database college;
+use college;
+create table movies(id int,name varchar(255));
+insert into movies values(1,"xyz");
+insert into movies values(2,"abc");
+
+Movie.java
+package spring.sp_jdbc2;
+public class Movie {
+private int id;
+private String name;
+public int getId() {
+return id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getName() {
+return name;
+}
+public void setName(String name) {
+this.name = name;
+}
+public Movie(int id, String name) {
+super();
+this.id = id;
+this.name = name;
+}
+public Movie() {
+super();
+}
+}
+
+MovieDAO.java
+package spring.sp_jdbc2;
+import org.springframework.jdbc.core.JdbcTemplate;
+public class MovieDOA {
+private JdbcTemplate JdbcTemplate;
+public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+JdbcTemplate = jdbcTemplate;
+}
+public int insertMovie(Movie m1) {
+String query = "insert into movies values(" + m1.getId() + ",'" + m1.getName() + "')";
+return JdbcTemplate.update(query);
+}
+public int deleteMovie(Movie m2) {
+String query = "delete from movies where id=" + m2.getId();
+return JdbcTemplate.update(query);
+}
+public int UpdateMovie(Movie m2) {
+String query = "update movies set name='" + m2.getName() + "' where id='" + m2.getId() +
+"'";
+return JdbcTemplate.update(query);
+}
+}
+App.java
+package spring.sp_jdbc2;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App
+{
+public static void main( String[] args )
+{
+ApplicationContext con = new ClassPathXmlApplicationContext("config.xml");
+MovieDOA obj = (MovieDOA) con.getBean("MovieDAO");
+Movie abc1 = new Movie(1, "Godzilla vs. Kong");
+Movie abc2 = new Movie(2, "Star Trek II: The Wrath of Khan");
+Movie abc3 = new Movie(3, "Jumanji: The Next Level");
+//Insert into table
+System.out.println("Siddhi Kotre: 50");
+System.out.println(obj.insertMovie(abc1));
+System.out.println(obj.insertMovie(abc2));
+System.out.println(obj.insertMovie(abc3));
+//Delete from table
+abc2.setId(2);
+System.out.println(obj.deleteMovie(abc2));
+//Update from table
+abc3.setId(3);
+abc3.setName("Zathura: A Space Adventure");
+System.out.println(obj.UpdateMovie(abc3));
+}
+}
+Config.xml-
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3308/college1"/>
+<property name="username" value="root"/>
+<property name="password" value="root"/>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+<bean id="MovieDAO" class="spring.sp_jdbc2.MovieDOA">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+</beans>
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>spring</groupId>
+<artifactId>sp_jdbc</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+<name>sp_jdbc</name>
+<url>http://maven.apache.org</url>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+<dependencies>
+<dependency>
+
+<groupId>org.springframework</groupId>
+<artifactId>spring-context</artifactId>
+<version>4.0.2.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-jdbc</artifactId>
+<version>5.3.6</version>
+</dependency>
+</dependencies>
+</project>
+
+
+
+2. PreparedStatement in Spring JdbcTemplate
+Employee.java
+package spring.sp_jdbc;
+public class Employee {
+private int id;
+private String ename;
+private String email;
+public int getId() {
+return id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getEname() {
+return ename;
+}
+public void setEname(String ename) {
+this.ename = ename;
+}
+public String getEmail() {
+return email;
+}
+public void setEmail(String email) {
+this.email = email;
+}
+public Employee(int id, String ename, String email) { super();
+this.id = id;
+this.ename = ename;
+this.email = email;
+}
+public Employee() {
+super();
+} }
+
+EmployeeDAO.java
+package spring.sp_jdbc;
+import java.sql.*;
+import org.springframework.jdbc.core.*;
+import org.springframework.dao.*;
+public class EmployeeDAO {
+private JdbcTemplate jdbcTemplate;
+public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+this.jdbcTemplate = jdbcTemplate;
+}
+public Boolean insEmp(final Employee e) {
+String query = "insert into emp values(?,?,?)";
+return jdbcTemplate.execute(query, new PreparedStatementCallback<Boolean>()
+
+{
+
+public Boolean doInPreparedStatement(PreparedStatement arg0)
+throws SQLException, DataAccessException {
+arg0.setInt(1, e.getId());
+arg0.setString(2, e.getEname());
+arg0.setString(3, e.getEmail());
+return arg0.execute();
+
+} });
+
+}
+}
+
+App.java
+package spring.sp_jdbc;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+public static void main(String[] args) {
+ApplicationContext con = new ClassPathXmlApplicationContext("config.xml");
+EmployeeDAO edao = (EmployeeDAO) con.getBean("empdao");
+Employee e = new Employee(50, "Siddhi Kotre" , "siddhikotre@gmail.com");
+
+System.out.println(edao.insEmp(e));
+
+System.out.println(edao.insEmp(e1));
+
+}
+}
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>spring</groupId>
+<artifactId>sp_jdbc</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+<name>sp_jdbc</name>
+<url>http://maven.apache.org</url>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+<dependencies>
+<dependency>
+
+<groupId>org.springframework</groupId>
+<artifactId>spring-context</artifactId>
+<version>4.0.2.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-jdbc</artifactId>
+<version>5.3.6</version>
+</dependency>
+</dependencies>
+</project>
+
+config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="ds"
+class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/college"/>
+<property name="username" value="root"/>
+<property name="password" value="root"/>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+<bean id="empdao" class="spring.sp_jdbc.EmployeeDAO">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+</beans>
+
+3. ResultSetExtractor Interface
+Employee.java
+package spring.sp_jdbc;
+public class Employee {
+private int id;
+private String ename;
+private String email;
+public int getId() {
+return id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getEname() {
+return ename;
+}
+public void setEname(String ename) {
+this.ename = ename;
+}
+public String getEmail() {
+return email;
+}
+public void setEmail(String email) {
+this.email = email;
+}
+public Employee(int id, String ename, String email) { super();
+this.id = id;
+this.ename = ename;
+this.email = email;
+}
+public Employee() {
+super();
+}
+}
+EmployeeDAO.java
+package spring.sp_jdbc;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+public class EmployeeDAO {
+private JdbcTemplate jdbcTemplate;
+public JdbcTemplate getJdbcTemplate() {
+return jdbcTemplate;
+}
+public void setJdbcTemplate(JdbcTemplate jdbcTemplate)
+{
+this.jdbcTemplate = jdbcTemplate;
+}
+public List<Employee> getAllEmployees() {
+String query = "select * from emp";
+return jdbcTemplate.query(query, new
+
+ResultSetExtractor<List<Employee>>() {
+
+public List<Employee> extractData(ResultSet arg0) throws
+
+SQLException, DataAccessException {
+
+List<Employee> employees = new ArrayList<Employee>();
+while (arg0.next()) {
+Employee e = new Employee();
+e.setId(arg0.getInt(1));
+e.setEname(arg0.getString(2));
+e.setEmail(arg0.getString(3)); employees.add(e);
+}
+return employees;
+} });
+
+}
+
+}
+
+App.java
+package spring.sp_jdbc;
+import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class App {
+public static void main(String[] args) {
+ApplicationContext con = new
+ClassPathXmlApplicationContext("config.xml");
+EmployeeDAO emp = (EmployeeDAO) con.getBean("empDAO"); List<Employee> emplist1 =
+emp.getAllEmployees();
+System.out.println("Result Extractor:");
+for (Employee e : emplist1) {
+System.out.print(" " + e.getId());
+System.out.print(" " + e.getEname());
+System.out.print(" " + e.getEmail());
+System.out.println();
+}
+}
+}
+
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>spring</groupId>
+<artifactId>sp_jdbc</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+<name>sp_jdbc</name>
+<url>http://maven.apache.org</url>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+<dependencies>
+<dependency>
+
+<groupId>org.springframework</groupId>
+<artifactId>spring-context</artifactId>
+<version>4.0.2.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-jdbc</artifactId>
+<version>5.3.6</version>
+</dependency>
+</dependencies>
+</project>
+config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="ds"
+class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/college"/>
+<property name="username" value="root"/>
+<property name="password" value="root"/>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+<bean id="empDAO" class="spring.sp_jdbc.EmployeeDAO">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+</beans>
+
+
+4. RowMapper interface
+Employee.java
+package spring.sp_jdbc;
+public class Employee {
+private int id;
+private String ename;
+private String email;
+public int getId() {
+return id;
+}
+public void setId(int id) {
+this.id = id;
+}
+public String getEname() {
+return ename;
+}
+public void setEname(String ename) {
+this.ename = ename;
+}
+public String getEmail() {
+return email;
+}
+public void setEmail(String email) {
+this.email = email;
+}
+public Employee(int id, String ename, String email) { super();
+this.id = id;
+this.ename = ename;
+this.email = email;
+}
+public Employee() {
+super();
+}
+}
+EmployeeDAO.java
+package spring.sp_jdbc;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
+public class EmployeeDAO {
+public JdbcTemplate JdbcTemplate;
+public void setJdbcTemplate(JdbcTemplate jdbcTemplate) { JdbcTemplate = jdbcTemplate;
+}
+public List<Employee> findall() {
+String query = "select *from emp";
+List<Employee> employees = JdbcTemplate.query(query, new
+
+RowMapper<Employee>()
+
+{
+public Employee mapRow(ResultSet arg0, int arg1) throws SQLException
+
+{
+
+Employee e = new Employee();
+e.setId(arg0.getInt(1));
+e.setEname(arg0.getString(2));
+e.setEmail(arg0.getString(3));
+return e;
+}
+});
+return employees;
+}
+}
+
+App.java
+package spring.sp_jdbc;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.util.*;
+public class App
+{
+public static void main( String[] args )
+{
+ApplicationContext con = new
+
+ClassPathXmlApplicationContext("config.xml");
+EmployeeDAO emp = (EmployeeDAO) con.getBean("empDAO");
+List<Employee> emplist = emp.findall();
+System.out.println("Row mapper:");
+for (Employee e : emplist) {
+System.out.println(" 50 Siddhi Kotre ");
+System.out.print(" " + e.getId());
+System.out.print(" " + e.getEname());
+System.out.print(" " + e.getEmail());
+
+}
+}
+}
+
+pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<groupId>spring</groupId>
+<artifactId>sp_jdbc</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+<name>sp_jdbc</name>
+<url>http://maven.apache.org</url>
+<properties>
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+<dependencies>
+<dependency>
+
+<groupId>org.springframework</groupId>
+<artifactId>spring-context</artifactId>
+<version>4.0.2.RELEASE</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-jdbc</artifactId>
+<version>5.3.6</version>
+</dependency>
+</dependencies>
+</project>
+config.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="ds"
+class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+<property name="url" value="jdbc:mysql://localhost:3306/college"/>
+<property name="username" value="root"/>
+<property name="password" value="root"/>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+<bean id="empDAO" class="spring.sp_jdbc.EmployeeDAO">
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>
+</bean>
+</beans>
+
+
+
+PRACTICAL 6: SPRING BOOT
+
+https://start.spring.io/
+1. File--> New--> New Spring Starter Project(Maven)--> add spring boot dev tools, thymeleaf, spring web
+2. Right Click on scr--> Create ProductServiceController.java-->Product.java
+Application.java is already generated
+
+
+
+1. SpringBootApplication
+Programapplication.java
+package springboot.program1.program1;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class Program1Application {
+public static void main(String[] args) {
+SpringApplication.run(Program1Application.class, args);
+}
+}
+Helloworld.java
+package springboot.program1.program1;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+@RestController
+public class helloworld {
+@RequestMapping("/")
+public String hello() {
+return "Hello Siddhi";
+}
+}
+index.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1 th:text-="${hello}"></h1>
+</body>
+</html>
+
+
+2. RESTful Web Services
+Program Application.java
+package springboot.program2.program2;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class Program2Application {
+public static void main(String[] args) {
+SpringApplication.run(Program2Application.class, args);
+}
+}
+ProductServiceController.java
+package springboot.program2.program2;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+@RestController
+public class ProductServiceController {
+private static Map<String, Product> pcontent = new HashMap<>();
+static {
+Product honey = new Product();
+honey.setId("50");
+honey.setName("Siddhi");
+pcontent.put(honey.getId(), honey);
+}
+// By default it gets the value so we don't need to give.
+@RequestMapping(value = "/products")//blue is url products
+public ResponseEntity<Object> getProduct() {
+return new ResponseEntity<Object>(pcontent.values(), HttpStatus.OK);
+}
+// We are getting data using Post method.
+@RequestMapping(value = "/products", method = RequestMethod.POST)
+public ResponseEntity<Object> addProduct(@RequestBody Product product) {
+pcontent.put(product.getId(), product);
+return new ResponseEntity<Object>("Product Added Succesfully ", HttpStatus.OK);
+}
+// We are using Put method.
+@RequestMapping(value = "/products/{id}", method = RequestMethod.PUT)
+public ResponseEntity<Object> updateProduct(@PathVariable("id") String id,
+@RequestBody Product product) {
+pcontent.remove(id);
+product.setId(id);
+pcontent.put(product.getId(), product);
+return new ResponseEntity<Object>("Product is Updated Successfully",
+
+HttpStatus.OK);
+}
+// We are deleting using delete method.
+@RequestMapping(value = "/products/{id}", method = RequestMethod.DELETE)
+public ResponseEntity<Object> updateProduct(@PathVariable("id") String id) {
+pcontent.remove(id);
+return new ResponseEntity<Object>("Product is deleted Successfully",
+
+HttpStatus.OK);
+}
+}
+Product.java
+package springboot.program2.program2;
+public class Product {
+private String id;
+private String name;
+public String getId() {
+return id;
+}
+public void setId(String id) {
+this.id = id;
+}
+public String getName() {
+return name;
+}
+public void setName(String name) {
+this.name = name;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
