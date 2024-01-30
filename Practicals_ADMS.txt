@@ -1,0 +1,588 @@
+PRACTICAL 1: ORACLE ROLL-UP
+
+PRACTICAL 2: ADVANCED SQL
+
+PRACTICAL 3: PENTAHO ETL
+
+PRACTICAL 4: BASICS OF R
+install.packages("Rcmdr")
+
+library(abind)
+detach("package:abind", unload = TRUE)
+getwd()
+setwd("C:/MCA")
+getwd()
+
+dir()
+
+31*78
+697/41
+
+x<- 39
+y<- 22
+c<-x-y
+class(c)
+is.integer(c)
+
+
+sum(100.,234.9,12.01)
+sqrt(256)
+
+x<-log(100)
+x*cos(pi)
+
+c<-sqrt(2345)
+log(c,2)
+
+vector
+x<-1:9
+dim(x)
+length(x)
+
+x=c(4,6,5,7,10,9,4,15)
+y=c(0,10,1,8,2,3,4,1)
+x*y 
+x+y
+
+a=c(1,5,4,3,6)
+b=c(3,5,2,1,9)
+a<=b
+
+
+x=c('blue', 'red', 'green', 'yellow')
+is.character(x)
+
+a=c(10,2,4,15)
+b=c(3,12,4,11)
+rbind(a,b) 
+cbind(a,b)
+
+a=c(0.1, 0.6, 33.8, 1.9, 9.6, 4.3, 33.7, 0.3, 0.0, 0.1)
+mean(a)
+sd(a)
+
+a=c(78,72,78,79,105)
+b=c(67,65,79,70,93)
+z<-a-b
+f<-mean(z)
+f
+
+q
+
+a<-matrix(1:4,2,2)
+a
+b<-matrix(c(12,32,12,24),2,2)
+b
+t(a)
+t(b)
+det(a)
+
+a1<-cbind(a,c(5,6))
+a1
+a2<-rbind(a,c(3,1))
+a2
+
+x = c(1, 2, 3, 3, 5, 3, 2, 4, NA)
+f<-factor(x)
+levels
+
+z <-c("p", "a" , "g", "t", "b")
+factor(z)
+z[3]<-"b"
+factor(z)
+
+z <- factor(c("p", "q", "p", "r", "q"))
+levels(z)[1]<-"w"
+z
+
+s1 <- factor(sample(letters, size=5, replace=TRUE))
+s1
+s2 <- factor(sample(letters, size=5, replace=TRUE))
+s2
+s3<-factor(c(levels(s1)[s1],levels(s2)[s2]))
+s3
+
+---Dataframe----
+Student <- data.frame(
+  Name = c("Alex", "Lilly", "Mark", "Oliver","Martha","Lucas","Caroline"),
+  Age = c(25, 31, 23,52,76,49,26),
+  Height = c(177, 163, 190,179,163,183,164),
+  Weight = c(57, 69, 83,75,70,83,53),
+  Sex = c("F","F", "M", "M","F","M","F")
+)
+print(Student)
+
+NewStudent <- data.frame(
+  Name = c("Alex", "Lilly", "Mark", "Oliver","Martha","Lucas","Caroline"),
+  Working = as.character(c("Yes", "No", "No", "Yes", "Yes", "No", "Yes"))
+)
+print(NewStudent)
+
+Combine <- cbind(Student, NewStudent)
+print(Combine)
+
+
+num_rows <- nrow(Combine)
+print(num_rows)
+num_cols <- ncol(Combine)
+print(num_cols)
+
+class_type <- sapply(Combine, class)
+print(class_type)
+
+height_column <- Combine$Height
+print(height_column)
+
+total <- dim(Combine)
+print(total)
+
+
+EmptyDataFrame <- data.frame(
+  Name = character(0),
+  Age = numeric(0)
+)
+
+print(EmptyDataFrame)
+dts<- data.table::data.table(Combine)	
+dts
+
+
+studentTable <- table(Student$Name)
+
+print(studentTable)
+----List----
+p <- c(2,7,8)
+q <- c("A", "B", "C")
+x <- list(p, q)
+x[2]
+
+Newlist <- list(a=1:10, b="Good morning", c="Hi")
+print(Newlist)
+Newlistplusone <- Newlist$a + 1
+print(Newlistplusone)
+
+
+list.files("C:/MCA/ADMS")
+getwd()  # Check the current working directory
+setwd("C:/MCA/ADMS")  # Set the working directory to the correct path
+
+testdb <- read.csv("C:/MCA/ADMS/user1.csv")
+testdb
+
+head(testdb,n=5)
+tail(testdb,n=5)
+
+df<-data.frame(testdb)
+df
+
+library(readxl)
+sm<- read_excel("C:/MCA/ADMS/user1234.xlsx")
+sm
+
+df<-readxl::read_excel("C:/MCA/ADMS/user1234.xlsx",sheet=1)
+df
+install.packages("writexl")
+
+library(writexl)
+writexl::write_xlsx(df,"C:/MCA/ADMS/user1234.xlsx")
+
+data<-data.frame(working_day=c(3,2,1,2),days_of_week_start=c(5,6,4,2))
+write_xlsx(data,"C:/MCA/ADMS/writeoutput.xlsx")
+
+read_excel("C:/MCA/ADMS/writeoutput.xlsx")
+
+PRACTICAL 5: DATA PREPROCESSING
+df <- read.csv (“d:\titanic.scv”) [use .csv file ]
+
+file_path <- "C:/MCA/Titanic.csv"
+df <- read.csv(file_path)
+head(df,5)
+tail(df, 5)
+
+first <- df[, 1:5]
+head(first)
+
+colnames(df)[colnames(df) == "Embarked"] <- "Location"
+
+df <- read.csv(file_path, header = FALSE)
+df
+colnames(df) <- c("PassId", "Lived", "Class", "Fullname", "Ages", "Sisp", "arch", "TicketNo", "Charges","CabinNo", "Address")
+
+df
+
+
+file_path <- "C:/MCA/Titanic.csv"
+titaic_df <- read.csv(file_path)
+
+
+titanic1 <- df[, 1:5]
+titanic1
+
+titanic2 <- df[, -(1:5)]
+titanic2
+
+titanic3 <- cbind(titanic1, titanic2)
+
+titanic3
+----Dealing with mising data-----
+  
+marks <- c(22,NA,45,30,NA,50,20)
+na_count <- sum(is.na(marks))
+non_na_count <- sum(!is.na(marks))
+
+non_na_marks <- na.omit(marks)
+
+na_count
+non_na_count
+non_na_marks
+
+
+mean_value <- mean(marks, na.rm = TRUE)
+mean_value
+median_value <- median(marks, na.rm = TRUE)
+median_value
+
+complete_cases <- complete.cases(df)
+complete_cases
+num_complete_cases <- sum(complete_cases)
+num_complete_cases
+
+
+
+missing_cabin <- sum(df$Cabin=="")
+missing_cabin
+
+df$Age
+mean_age <- mean(df$Age, na.rm = TRUE)
+median_age <- median(df$Age, na.rm = TRUE)
+mean_age
+median_age
+df$Age[is.na(df$Age)] <- mean_age
+
+df$Age
+
+---dealing with categorical--- 
+
+Nationality <- c("Indian", "Chinese", "Indian", "Chinese", "Indian", "Indian")
+Mark <- c(50, 44, 51, 32, 40, 41)
+data_frame <- data.frame(Nationality, Mark)
+data_frame
+
+class(Nationality)
+Nationality <- as.factor(Nationality)
+class(Nationality)
+
+
+
+average_marks <- tapply(Mark, Nationality, mean)
+average_marks
+data_frame$Mark_Factor <- cut(data_frame$Mark, breaks = c(0, 35, 45, 100), labels = c("poor", "average", "good"), right = FALSE)
+data_frame
+
+
+
+
+
+
+PRACTICAL 6: ASSOCIATION RULE MINING
+Step 1: Prepare .csv file
+Step :2 : Create a data frame in R from this .csv file
+>mydata<-read.csv(“D:/Test_item.csv")
+
+>mydata
+
+>mydata
+Step 3 : group the data with the same transaction id
+using split function
+> mytrans <- split(mydata$Items, mydata$TransId,"transactions")
+
+> mytrans
+Step 4: install package arules to apply association
+rule on data
+# loading arules library
+
+>Install.package(“arules”)
+
+>library(“arules”)
+
+Step 5 : Apply apriori function for association rules
+> myrules = apriori(mytrans, parameter=list(support=0.5, confidence=0.75,maxlen=3,minlen=2))
+Step 6 : Get the rules using inspect function of arules
+library
+>inspect(myrules)
+
+
+install.packages("arules")
+require(arules)
+library("arules")
+library("Hmisc")
+
+mydata2 <- read.csv("C:/MCA/data2.csv")
+mydata2
+mytrans2 <- split(mydata2$Items,mydata2$TransId,"Transaction2")
+mytrans2
+myrules2 = apriori(mytrans2,parameter = list(support = 0.3, confidence = 0.8, maxlen = 3, minlen =2))
+myrules2
+inspect(myrules2)
+myrules2 = apriori(mytrans2,parameter = list(support = 0.3, confidence = 0.6, maxlen = 3, minlen =2))
+myrules2
+inspect(myrules2)
+
+
+mydata3 <- read.csv("C:/MCA/data3.csv")
+mydata3
+mytrans3 <- split(mydata3$Items,mydata3$TID,"Transaction3")
+mytrans3
+myrules3 = apriori(mytrans3, parameter = list(support = 0.5, confidence = 0.75 , maxlen = 3, minlen =2))
+myrules3
+inspect(myrules3)
+myrules3 = apriori(mytrans3, parameter = list(support = 0.4, confidence = 0.75 , maxlen = 3, minlen =2))
+myrules3
+inspect(myrules3)
+
+
+
+
+
+
+
+
+PRACTICAL 7: LINEAR REGRESSION
+> x=c(3,4,5,6,4,5,6,7)
+> y=c(3,5,3,2,3,4,6,6)
+> relation <- lm(y~x)
+> relation
+>summary(relation)
+> a <- data.frame(x = 8)
+
+> result <- predict(relation,a)
+
+>result
+> plot(y,x,col = "blue",main = "Height & Weight Regression")
+> abline(lm(x~y),xlab = "Weight in Kg", ylab = "Height in cm")
+
+Step 1: load Data
+>my_data<-read.csv(“C:/Fish.csv")
+Step 2: check columns and no of rows and columns of the dataset
+>names(my_data)
+>dim(my_data)
+Step 3: Randomize dataset
+>my_data <- my_data[sample(nrow(my_data), ), ]
+>head(my_data)
+Step 4 : visualize the relationship between two variable
+> plot(my_data$Length3, my_data$Weight)
+Step 5: create Testing and Training Set
+> TrainData <- my_data[1:111,]
+> TestData <- my_data[112:159,]
+Step 6: Apply the model on training data set
+> fit = lm(Length3 ~ Weight , data=TrainData)
+> summary(fit)
+Step 7 : prediction for new data (Test dataset)
+>preds <- predict(fit, newdata = TestData)
+Step 8: Analyze predicted and actual data
+> df1 <- data.frame(preds,TestData$Length3)
+>df1
+Step 9: correlation between actual and predicted value columns
+>cor(preds,TestData$length3)
+Step 10: residual plot
+ggplot(fit, aes(Length3, Weight)) + geom_point()+ stat_smooth(method = lm, se = FALSE) + geom_segment(aes(xend = Length3, yend = .fitted), color = "red", size = 0.3)
+
+
+
+
+
+PRACTICAL 8: DATA MINING CLASSIFICATION
+install.packages("RWeka")
+install.packages("party")
+
+ library(RWeka)
+ library(party)
+my_data <-iris
+#Plot graph for Iris Data
+pairs(my_data[1:4], main="Iris Data (red=setosa,green=versicolor,blue=virginica)", pch=21, bg=c("red","green3","blue")[unclass(my_data$Species)])
+ m1 <- J48(Species~., data = TrainData)
+#plot the graph
+install.packages("partykit")
+library(partykit)
+ plot(m1)
+ summary(m1)
+# Prediction for new data
+ irisPred <- predict(m1, TestData) 
+df<-data.frame(irisPred,TestData$Species)
+ df
+----C5.0 decision tree classification
+
+install.packages('C50') 
+library('C50') 
+# For decision tree classification load Iris dataset 
+ir <- read.csv('Iris_Data.csv') # open iris dataset 
+summary(ir)
+boxplot(ir[-5], main = 'Boxplot of Iris data by attributes')
+#Convert classification column into factor:
+ ir $Species <- as.factor(ir $Species)
+
+#randomize data
+ ir <- ir [sample(nrow(ir), ), ] 
+head(ir)
+#Training testing (70/30) partition
+TrainData <- ir [1:105,]
+TestData <- ir [106:150,] 
+
+# C5.0 classification model 
+irTree <- C5.0(TrainData[,-5], TrainData[,5]) 
+summary(irTree) # view the model components 
+plot(irTree, main = 'Iris decision tree') # view the model graphically 
+# build a rules set 
+ irRules <- C5.0(TrainData [,-5], TrainData [,5], rules = TRUE) 
+summary(irTree) # view the model components 
+# test the prediction [classification] capability 
+ pred<-predict(irRules, newdata = TestData[, -5]) 
+ df<-data.frame(TestData$Species, pred)
+df
+# See the confusion matrix
+confusion<-table(TestData$Species, pred)
+confusion
+confusionMatrix(confusion)
+PART 2. NaiveBayes & KNN
+
+Supervised classification: Performing Naive Bayes on iris Dataset
+
+# Installing Packages
+install.packages("e1071")
+install.packages("caTools")
+install.packages("caret")
+# Loading package
+library(e1071)
+library(caTools)
+library(caret)
+# Load Data
+my_iris<-iris
+#randomize data
+my_iris <- my_iris[sample(nrow(my_data), ), ] 
+head(my_data)
+split <- sample.split(my_iris, SplitRatio = 0.7)
+train_cl <- subset(my_iris, split == "TRUE")
+test_cl <- subset(my_iris, split == "FALSE")
+# Fitting Naive Bayes Model to training dataset
+classifier_cl <- naiveBayes(Species ~ ., data = train_cl)
+classifier_cl
+# predicting on test data'
+y_pred <- predict(classifier_cl, newdata = test_cl)
+# Confusion Matrix
+ cm <- table(test_cl$Species, y_pred)
+ cm
+# Model Evaluation
+confusionMatrix(cm)
+---------Supervised classification: Performing KNN (K – Nearest Neighbour) on iris Dataset
+
+# Installing Packages
+install.packages("class")
+
+##load the package class
+ library(class)
+##load data
+my_data<-read.csv(“d:/iris.csv”) 
+Or 
+ my_data <-iris
+## see the structure
+ head(my_data) 
+#Randomizing Data
+my_data <- my_data[sample(nrow(my_data), ), ] 
+head(my_data)
+#Training testing (70/30) partition
+TrainData <- my_data[1:105,]
+TestData <- my_data[106:150,]
+##Feature scaling
+train_scale<-scale(TrainData[,1:4])
+test_scale<-scale(TestData[,1:4])
+
+##run knn function	
+ pr <- knn(train=train_scale,test=test_scale,cl=TrainData$Species,k=1)
+ summary(pr)
+##create table with predicted value and original value
+ cm<-table(TestData$Species, pr)
+
+# See the confusion matrix
+cm
+ msClassifier<-mean(pr != TestData$Species)
+ print(paste('Accuracy =',1-msClassifier))
+
+
+
+
+PRACTICAL 9: DATA MINING CLUSTERING
+1. Unsupervised classification: Implementation and analysis of clustering algorithm K-Means 
+# Load Data
+>Iris<-read.csv(“D:/iris.csv”)
+>library(ggplot2) 
+>ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point() 
+>set.seed(20) 
+>irisCluster <- kmeans(iris[, 3:4], 3, nstart = 20) 
+> irisCluster
+> table(irisCluster$cluster, iris$Species)
+> irisCluster$iter   # total iteration	
+> irisCluster$centers  # three centroid for three cluster
+> irisCluster$size # no of record in each cluster
+> irisCluster$ifault # fault or wrong interpreted record
+> irisCluster$Cluster # final cluster assign to each record  
+> irisCluster$cluster <- as.factor(irisCluster$cluster)
+> ggplot(iris, aes(Petal.Length, Petal.Width, color = irisCluster$cluster)) + geom_point()
+
+
+2.Unsupervised classification: Implementation and analysis of clustering algorithm Hierarchical clustering Agglomerative  
+# Load Data
+>Iris<-read.csv(“D:/iris.csv”)
+> head(iris)
+# implementation of hierarchical model
+>clusters <- hclust(dist(iris[, 3:4]), method="complete")
+> clusters
+# Plot the Dendrogram
+> plot(clusters)
+#cut the dendrogram in order to create the desired number of clusters
+> clusterCut <- cutree(clusters, 3) 
+> clusterCut
+> table(clusterCut, iris$Species) 
+#using average link approach 
+>clusters <- hclust(dist(iris[, 3:4]), method = 'average') 
+>plot(clusters) 
+>clusterCut <- cutree(clusters, 3) 
+>table(clusterCut, iris$Species)
+
+
+Iris<-iris
+install.packages("ggplot2")
+library(ggplot2) 
+ggplot(iris, aes(Petal.Length, Petal.Width, color = Species)) + geom_point() 
+set.seed(20) 
+irisCluster <- kmeans(iris[, 3:4], 3, nstart = 20) 
+irisCluster
+table(irisCluster$cluster, iris$Species)
+irisCluster$iter
+irisCluster$centers
+irisCluster$size
+irisCluster$ifault
+irisCluster$Cluster
+irisCluster$cluster <- as.factor(irisCluster$cluster)
+ggplot(iris, aes(Petal.Length, Petal.Width, color = irisCluster$cluster)) + geom_point()
+
+
+
+Iris<-iris
+head(iris)
+clusters <- hclust(dist(iris[, 3:4]), method="complete")
+clusters
+plot(clusters) 
+
+clusterCut <- cutree(clusters, 3) 
+clusterCut
+table(clusterCut, iris$Species) 
+
+clusters <- hclust(dist(iris[, 3:4]), method = 'average') 
+plot(clusters) 
+clusterCut <- cutree(clusters, 3) 
+table(clusterCut, iris$Species) 
+
+
+
+
+PRACTICAL 10: ORDBMS
