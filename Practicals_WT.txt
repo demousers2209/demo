@@ -1,0 +1,1790 @@
+Practical no 1
+1.
+a. console.log(“\t Siddhi \n Thakur College”)
+b. let a = 1+( (3 -2)*4/2
+console.log(a);
+let b = 3 + (-5) - 2+3
+console.log(b);
+
+2.
+function Multiply(a,b)
+{
+ return a*b 
+}
+console.log(“\n Multiplication is:”+ Multiply(4,5))
+
+3.
+function print(name)
+{
+return "Welcome "+name;
+}
+console.log(print("Siddhi Kotre"));
+
+4.
+for(i=0;i<=10;i++)
+{
+console.log("5 x "+i+  "= " + (i*5))
+}
+
+5.
+function check(num)
+{
+if(num%2==0){
+console.log('This is even number');
+}else{
+console.log('This is odd number');
+}
+}
+check(5);
+
+6. Factorial 
+function factorial(n){
+    if(n==0||n==1){
+    return 1;
+    }
+    else{
+    return n * factorial(n-1);
+    }
+    }
+    let n = 4;
+    answer = factorial(n)
+    console.log("Factorial of "+n+ " : " +answer)
+    
+7. Demonstrate anonymous function.
+var fact=1
+var func = function(n)
+{
+for(i=1;i<=n;i++){
+fact=fact*i;
+}
+console.log("The factorial "+n+" is "+fact);
+}
+func(6)
+
+8. Demonstrate call back function.
+function multiply(a,b,callback){
+    var result = a*b;
+    callback(result);
+    }
+    function output(multi){
+    console.log("I am in output function");
+    console.log("Multiplication of provided inputs are: "+multi);
+    }
+    function display(multi){
+    console.log("I am in display function");
+    console.log("Multiplication of provided inputs are: "+multi);
+    }
+    multiply(4,6,output);
+    multiply(7,5,display);
+    
+
+
+
+9. Demonstrate synchronous programming.
+var fs = require("fs");
+var filedata = fs.readFileSync('answer.txt');
+console.log(filedata.toString());
+console.log("End of program");
+
+10.Demonstrate asynchronous programming
+var fs=require("fs");
+var filedata = fs.readFile('answer.txt',function(ferr,filedata){
+if(ferr){
+console.error(ferr);
+}
+console.log(filedata.toString());
+});
+console.log("End of program");
+
+11. print your name after 3 seconds and address after 5  seconds.
+function printName() {
+setTimeout(function () {
+console.log("Siddhi Kotre");
+}, 3000);
+}
+function printAddress() {
+setTimeout(function () {
+console.log("Address: A/501 Riddhi Siddhi Apt, Malad");
+}, 5000);
+}
+printName();
+printAddress();
+
+12. Display current time after every 5 seconds.
+setInterval(
+    ()=>{
+    var d = new Date();
+    console.log(d.toLocaleTimeString());
+    },5000
+    );
+    
+13.  Print Hello World every second and stop printing after 5 seconds.
+ And after 5 times print Well Done and let node exit.
+var count = 1;
+function myfunc() {
+console.log("Hello world")
+if (count == 5) {
+console.log("Well Done");
+clearInterval(timerId);
+} else {
+count++;
+}
+}
+var timerId = setInterval(myfunc,1000);
+
+14.Print 1 to 10 each digit should display after 2 seconds.
+var count = 1;
+function myfunc() {
+console.log(count)
+if (count == 10) {
+clearInterval(cId);
+} else {
+count++;
+}
+}
+var cId = setInterval(myfunc,2000);
+
+15.Calculate the area of the circle and call that module from another javascript file.
+First File:
+exports.myfunction =function(r){
+return (3.14*r*r);
+}
+Second File:
+var d = require('./prac15.js');
+console.log("Area of circle "+d.myfunction(6));
+
+16. Write a program to demonstrate any one core module in node.js (Ex. http/ fs etc.)
+var http =require('http');
+http.createServer(function(req,res){
+res.write("Hiiii ");
+res.end('Hello world!!!');
+}).listen(8090);
+
+17.  create a ‘click’ event that will print a greeting message.
+var events = require("events");
+var eventEmitter = new events.EventEmitter();
+function listner1(){
+console.log("Hello, Greetings!");
+}
+eventEmitter.addListener("click",listner1);
+eventEmitter.emit("click");
+
+18. calculated event that will add 4 functions Addition, Subtraction, Multiplication and Division of two numbers provided in the argument. (use event emitter).
+var events = require("events");
+const { EventEmitter } = require("stream");
+var eventEmitter = new events.EventEmitter();
+function listner1(a,b){
+console.log("Addition of two number is: ",a+b);
+}
+eventEmitter.addListener("calculated",listner1);
+function listner2(a,b){
+console.log("Subtraction of two number is: ",a-b);
+}
+eventEmitter.addListener("calculated",listner2);
+function listner3(a,b){
+console.log("Multiplication of two number is: ",a*b);
+}
+eventEmitter.addListener("calculated",listner3);
+
+function listner4(a,b){
+console.log("Division of two number is: ",a/b);
+}
+eventEmitter.addListener("calculated",listner4);
+eventEmitter.emit("calculated",10,5);
+
+eventEmitter.removeListener("calculated",listner1);
+console.log("Addition removed");
+eventEmitter.emit("calculated",5,2);
+
+console.log(eventEmitter.listenerCount("calculated"));
+console.log("Program Ended");
+
+
+
+Practicalno 2:
+1. Write a program to demonstrate the Path module.
+const path = require('path');
+const notes = path.resolve('index.html');
+
+console.log("Full Path of input file: "+notes);
+console.log("Directory Path: "+path.dirname(notes));
+console.log("Basename: "+path.basename(notes));
+console.log("Extension Name: "+path.extname(notes));
+
+const name = 'siddhi';
+console.log(path.join('/','users',name,'notes.txt'));
+const pathToDir =  path.normalize('C:\Users/50_siddhi');
+console.log(pathToDir);
+
+2. Program to Read the existing file.
+var fs =require('fs');
+fs.readFile('newindex.txt',function(err,data){
+    if(err) throw err;
+    console.log(data.toString());
+});
+
+try{
+    const data = fs.readFileSync('newindex.txt','utf-8')
+    console.log(data);
+
+}catch(err){
+    console.error(err);
+}
+
+3. Write a program to perform Write operation
+var fs = require('fs');
+fs.writeFile('testing.txt','Hello world',
+function(err){
+    if(err)
+    console.log(err);
+else
+console.log('Write operation complete.');
+
+});
+
+//Synchronus writing
+const content = 'some content';
+try{
+    const data =fs.writeFileSync('testsync.txt',content)
+
+}catch(err){
+    console.error(err);
+}
+fs.readFile('testing.txt',function(err,data){
+    if(err) throw err;
+    console.log(data.toString());
+});
+
+4.  Write a program to append the existing file content.
+
+var fs = require('fs');
+fs.appendFile('test.txt',' This is my text',
+function(err){
+    if(err)
+    console.log(err);
+else
+console.log('Updated');
+});
+console.log("\n File contents of the file before the append operation:");
+fs.readFileSync("test.txt","utf-8");
+
+fs.appendFileSync("test.txt"," Hello I am appended text");
+console.log("\n File contents of the file after the append operation:");
+fs.readFileSync("test.txt","utf-8");
+
+
+5. Write a program to Delete the file
+var fs = require('fs');
+fs.unlink('test.txt', function(err){
+    if(err)
+    console.log(err);
+else
+console.log('File Deleted!!!');
+});
+
+6.  Write a program to rename the existing file.
+var fs = require('fs');
+fs.rename('newindex.txt', 'testing1.txt',function(err){
+    if(err)
+    console.log(err);
+else
+console.log('File Renamed!!!');
+});
+
+7. Write a program to copy the  file.
+const fs = require('fs');
+console.log(("\n File contents of the example_file:"),
+fs.readFileSync("testing.txt","utf-8"));
+fs.copyFile("testing.txt","copied_file.txt",(err) =>{
+    if(err)
+    console.log("ERROR FOUND", err);
+else
+console.log("Contents of the file copied!",fs.readFileSync("copied_file.txt","utf8"))
+}
+);
+
+8. Write a program to Read Stream in node.js.
+var fs = require("fs");
+var myReadStream = fs.createReadStream('copied_file.txt',"utf-8");
+
+myReadStream.on('data',function(chunk){
+    console.log('new chunk received');
+    console.log(chunk);
+})
+
+9. Write a program to Write Steam in node.js
+var fs = require("fs");
+var myReadStream = fs.createReadStream('copied_file.txt',"utf-8");
+var myWritestream =fs.createWriteStream('writestream.txt',"utf-8");
+myReadStream.on('data',function(chunk){
+    console.log('new chunk received');
+    myWritestream.write(chunk);
+})
+
+
+10. Write a program to Read data from a file and Write that data in another file using piping.
+var fs = require("fs");
+var myReadStream = fs.createReadStream('writestream.txt');
+var myWritestream =fs.createWriteStream('writestream1.txt');
+myReadStream.pipe(myWritestream);
+
+11. Create a node.js HTTP web server.
+var http =require('http');
+const fs =require('fs');
+const { error } = require('console');
+const port =3000;
+
+const server = http.createServer(function(req,res){
+    res.writeHead(200 ,{'Content-Type':'text/html'});
+    fs.readFile('index.html',function(error,data)
+    {
+    if(error){
+        res.writeHead(404);
+        res.write("ERROR : File not found");
+    }
+    else{
+        res.write(data);
+
+    }
+    res.end();
+})
+});
+
+server.listen(port,function(error){
+    if(error){
+        console.log("Something went wrong "+error);
+    }
+    else{
+        console.log('Server is listnening on port '+port);
+    }
+});
+
+12. Write a program to create 3 different HTTP requests and display the content accordingly.
+var http =require('http');
+
+var server = http.createServer(function(req,res){
+if(req.url == '/')
+{
+    res.writeHead(200 ,{'Content-Type':'text/html'});
+    res.write('<html><body><p>This is the Home page</p></body></html>');
+    res.end();
+}
+else if(req.url == '/student'){
+    res.writeHead(200 ,{'Content-Type':'text/html'});
+    res.write('<html><body><p>This is the Student page</p></body></html>');
+    res.end();
+}
+else if(req.url == '/admin'){
+    res.writeHead(200 ,{'Content-Type':'text/html'});
+    res.write('<html><body><p>This is the Admin page</p></body></html>');
+    res.end();
+}
+else{
+ 
+    res.end('Invalid page');
+}
+    });
+    server.listen(5000);
+    console.log("Node.js is running on 5000 server")
+
+13.  Write a program to create separate index.html page and display the same using node.js
+const http = require('http');
+const fs = require('fs');
+const port = 8080;
+
+var server = http.createServer(function(req, res){
+   res.writeHead(200, {'Content-type' : 'text.html'});
+   fs.readFile('index.html', function(error, data){
+       if(error)
+       {
+           res.writeHead(404);
+           res.write("Error : File Not Found!!!");
+       }
+       else
+       {
+           res.write(data);
+       }
+       res.end();
+   });
+});
+
+
+server.listen(port);
+
+14. Write a program to read an index.html file and display it using stream piping
+const http = require('http');
+const fs = require('fs');
+const port = 3000;
+const server = http.createServer(function (req, res) {
+res.writeHead(200, { 'Content-Type': 'text/html' });
+const fileStream = fs.createReadStream('index.html');
+
+fileStream.on('error', function (error) {
+res.writeHead(404);
+res.write('ERROR: File not found');
+res.end();
+});
+fileStream.pipe(res);
+});
+server.listen(port, function (error) {
+if (error) {
+console.log('Something went wrong ' + error);
+} else {
+console.log('Server is listening on port ' + port);
+}
+});
+
+15. Write a program to shutdown the http server gracefully after 5 seconds.
+http =require('http')
+server=http.createServer(function(req,res){
+  res.write("Hello....I will be destroyed in 5 seconds")
+  res.end()
+}).listen(3000)
+console.log("Listening port 3000")
+setTimeout(function(){
+    server.close();
+    server.unref()
+},5000)
+
+
+16. Write a program to create and fetch the data from html form and display the same.
+index.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Register</h2>
+
+<form action="/" method="post">
+  <label> Name:</label><br>
+  <input type="text" id="dname" name="dname" /><br>
+  <label>Email:</label><br>
+  <input type="text" id="email" name="email" /><br><br>
+  <label>Address:</label><br>
+  <input type="text" id="daddress" name="daddress"/><br><br>
+ <button>Submit</button>
+</form>
+</body>
+</html>
+
+code.js
+var http = require('http');
+var fs = require('fs');
+var qs = require('querystring');
+var server = http.createServer(function(req,res)
+{
+    if(req.method == "GET"){
+        res.writeHead(200 ,{'Content-Type':'text/html'});
+     fs.createReadStream("index.html","utf8").pipe(res);
+    }
+    else if(req.method == "POST"){
+        var body = "";
+        req.on("data",function(chunk){
+            body += chunk;
+            console.log("Before Parsing:\n "+body)
+            var data = qs.parse(body);
+            body = "Name: "+data.dname+" Email: "+data.email+" Address: "+data.daddress;
+            console.log("\nAfter Parsing\n"+body)
+        });
+        req.on("end",function(){
+            res.writeHead(200 ,{'Content-Type':'text/html'});
+            res.end(body);
+        });
+    }
+}).listen(3000)
+
+
+
+Practicalno 3
+Install mysql --> npm install mysql
+1. connect to MySql Server and create a Student Database.
+
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host:"localhost",
+    user: "root",
+    password: ""
+});
+con.connect(function(err){
+    if(err) throw err;
+    var sql = "CREATE DATABASE Student1";
+    con.query(sql, function (err, result){
+        if(err) throw err;
+        console.log("Database Created");
+    });
+});
+
+2.  create a student_detail table with node.js.
+
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host:"localhost",
+    user: "root",
+    password: "",
+    database: "Student1"
+});
+con.connect(function(err){
+    if(err) throw err;
+    console.log("Database Connected!");
+    var sql = "CREATE Table Student1(Stud_Id int auto_increment PRIMARY KEY,Stud_Name varchar(50),Stud_Percent INT, Stud_Course varchar(50)) ";
+    con.query(sql, function (err, result){
+        if(err) throw err;
+        console.log("Table Created");
+    });
+});
+
+3.  insert the following details of the student_detail.
+Stud_Id int auto_increment
+Stud_Name varchar(50)
+Stud_Percent int 
+Stud_Course varchar(50)
+
+
+
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host:"localhost",
+    user: "root",
+    password: "",
+    database: "Student1"
+
+});
+con.connect(function(err){
+    if(err) throw err;
+    console.log("Database Connected!");
+    var sql = "INSERT INTO Student1 (Stud_Name,Stud_Percent,Stud_Course) VALUES ? ";
+    var values = [
+        ['Siddhi',92,'MCA'],
+        ['Harry',60,'MSC'],
+        ['Jack',35,'MCA'],
+    ];
+    con.query(sql,[values] ,function (err, result){
+        if(err) throw err;
+        console.log("Number of rows inserted"+result.affectedRows);
+    });
+});
+
+
+4. Demonstrate the updation of a record.
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Student1",
+    port:3306
+});
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Database Connected!");
+
+    var sql = "UPDATE Student1 SET Stud_Percent = ? WHERE Stud_Name = ?";
+    var updateValues = [85, 'Siddhi'];
+
+    con.query(sql, updateValues, function (err, result) {
+        if (err) throw err;
+        console.log("Number of rows updated: " + result.affectedRows);
+
+       
+    });
+});
+
+5.  demonstrate the deletion of a records
+var mysql = require('mysql');
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Student1",
+    port:3306
+});
+
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Database Connected!");
+
+   
+    var sql = "DELETE FROM Student1 WHERE Stud_Name = ?";
+    var Value = 'Jack';
+    con.query(sql, [Value], function (err, result) {
+        if (err) throw err;
+        console.log("Number of rows deleted: " + result.affectedRows);
+
+       
+    });
+});
+
+
+6. Display details of all the students.
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Student1",
+    port: 3306
+});
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Database Connected!");
+
+    var sql = "SELECT * FROM Student1";
+
+    con.query(sql, function(err, result, fields) {
+        if (err) throw err;
+        console.log("Student Details:");
+
+        result.forEach(function(student) {
+            console.log("Student ID: " + student.Stud_Id);
+            console.log("Student Name: " + student.Stud_Name);
+            console.log("Student Percentage: " + student.Stud_Percent);
+            console.log("Student Course: " + student.Stud_Course);
+           
+        });
+
+        con.end(function(err) {
+            if (err) throw err;
+            console.log("Database connection closed.");
+        });
+    });
+});
+
+7.Display students whose percentage is less than 36.
+const mysql = require('mysql');
+
+const con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "Student1",
+  port: 3306
+});
+
+con.query("SELECT * FROM Student1", function (err, result) {
+  if (err) throw err;
+
+  console.log("Students with Percentage Less Than 36%:");
+
+  for (const student of result) {
+    if (student.Stud_Percent < 36) {
+      console.log(`Student ID: ${student.Stud_Id}`);
+      console.log(`Student Name: ${student.Stud_Name}`);
+      console.log(`Percentage: ${student.Stud_Percent}%`);
+   
+    }
+  }
+
+  con.end(function (err) {
+    if (err) throw err;
+    console.log("Database connection closed.");
+  });
+});
+
+
+8. display all the students of the MCA. Also print 
+Student Name is from Stud_Course
+
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "Student1",
+    port:3306
+});
+
+con.connect(function (err) {
+    if (err) throw err;
+    con.query("SELECT * from Student1", function(err, result)
+    {
+        for(var i=0;i<result.length;i++){
+            console.log(`${result[i].Stud_Name} is of course ${result[i].Stud_Course}`);
+        };
+    });
+       
+   
+});
+
+9.Write a program to fetch and display all the records in table format on a web page.
+var mysql = require('mysql');
+const http = require('http');
+
+var con = mysql.createConnection({
+   host: "localhost",
+   user: "root",
+   password: "",
+   database: "Student1",
+   port:3306
+});
+
+
+con.connect(function (err) {
+   if (err) throw err;
+   con.query("SELECT * from Student1", function(err, result){
+       var table = '';
+       table ='<table border ="1"><tr><th>No.</th><th>Name.</th><th>Course</th></tr>';
+       for(var i=0;i<result.length;i++){
+           table +='<tr><td><b>'+(i+1)+'</b></td><td>'+result[i].Stud_Name +'</td><td>'+result[i].Stud_Course+'</td></tr>';
+       }
+       table += '</table>'
+
+       http.createServer((req,res)=>{
+           res.writeHead(200,{'Content-Type':'text/html', 'charset' :'utf-8'});
+           res.write(table,'utf-8');
+           res.end();
+       }).listen(3000);
+   });
+
+});
+
+
+10.  Fetch data from mysql server and store this data in a text file.
+var mysql = require('mysql');
+var http = require('http');
+const fs = require('fs');
+
+var con = mysql.createConnection({
+   host: "localhost",
+   user: "root",
+   password: "",
+   database: "Student1",
+   port:3306
+});
+
+con.connect(function(err){
+    if (err) throw err;
+
+    con.query("SELECT * from Student1", function(err, result){
+        var data ='';
+        result.forEach((result)=> {
+            data += `${result.Stud_Name} scored ${result.Stud_Percent} \n`;
+
+            fs.writeFile("student_data.txt", data, function(err) {
+            if (err)
+            console.log(err);
+            });
+    });
+   
+   });
+
+});
+
+
+11. Write a program to accept data from html form and insert in the database.
+index.html
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Register</h2>
+
+<form action="/" method="post">
+  <label> Name:</label><br>
+  <input  type="text"
+          id="name"
+          name="name" /><br>
+  <label>Percent:</label><br>
+  <input  type="text"
+          id="percent"
+          name="percent" /><br><br>
+  <label>Course:</label><br>
+  <input  type="text"
+          id="course"
+          name="course"/><br><br>
+ <button>Submit</button>
+</form>
+</body>
+</html>
+
+demo.js
+var mysql = require('mysql');
+var http = require('http');
+var qs = require('querystring');
+var fs = require('fs');
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "Student1",
+  port: 3306
+});
+var server = http.createServer(function(req,res)
+{
+    if(req.method == "GET"){
+        res.writeHead(200 ,{'Content-Type':'text/html'});
+     fs.createReadStream("index.html","utf8").pipe(res);
+    }
+    else if(req.method == "POST"){
+        var body = "";
+        req.on("data",function(chunk){
+            body += chunk;
+           
+            var data = qs.parse(body);
+            body = "Name: "+data.name+" Percent: "+data.percent+" Course: "+data.course;
+            console.log(body);
+            con.connect(function(err){
+                if(err) throw err;
+                var sql = "INSERT INTO student1(Stud_Name,Stud_Percent,Stud_Course) values ('"+data.name+"','"+data.percent+"','"+data.course+"')";
+                con.query(sql,function(err,result){
+                    if (err) throw err;
+                    console.log("1 record inserted");
+                });
+            });
+        });
+        req.on("end",function(){
+            res.writeHead(200 ,{'Content-Type':'text/html'});
+            res.end(body);
+        });
+    }
+}).listen(3000);
+
+
+
+12. program to fetch student details using stored procedure and display it in a web browser.
+const http = require('http');
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host: "localhost",
+  user: "root",
+  password: "",
+  database: "student",
+  port: 3306
+});
+
+db.connect((err) => {
+  if (err) {
+    console.error('Database connection error: ' + err);
+    return;
+  }
+  console.log('Connected to the database');
+});
+
+const server = http.createServer((req, res) => {
+  if (req.url === '/students' && req.method === 'GET') {
+   
+    db.query('CALL `fetchdata()`(@p0, @p1, @p2)', (error, results) => {
+      if (error) {
+        console.error('Error calling stored procedure: ' + error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Internal Server Error');
+      } else {
+       
+        let htmlResponse = '<html><head><title>Student Details</title></head><body>';
+        htmlResponse += '<h1>Student Details</h1>';
+        htmlResponse += '<ul>';
+        results[0].forEach((student_detail) => {
+          htmlResponse += `<li>${student_detail.Stud_Name}, Percent: ${student_detail.Stud_Percent},Course: ${student_detail.Stud_Course}</li>`;
+        });
+        htmlResponse += '</ul>';
+        htmlResponse += '</body></html>';
+
+       
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(htmlResponse);
+      }
+    });
+  } else {
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  }
+});
+
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+13. Write a program to insert data using stored procedure with node.js.
+BEGIN
+    INSERT INTO student(Stud_Name, Stud_Percent, Stud_Course) VALUES (Stud_Name, Stud_Percent, Stud_Course);
+END
+
+var mysql = require("mysql");
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "Student",
+  port: 3306,
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Database Connected");
+
+  var sql = "CALL insert_data('Sam','MSC','60')";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 Record inserted");
+  });
+});
+
+
+14. Write a program to delete data using stored procedures with node.js
+var mysql = require("mysql");
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "Student",
+  port: 3306,
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Database Connected");
+
+  var sql = "CALL delete_data(6)";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 Record inserted");
+  });
+});
+
+15. Write a program to update data using stored procedures with node.js.
+
+
+
+var mysql = require("mysql");
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "student1",
+  port: 3306,
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Database Connected");
+
+  var sql = "CALL UPDATE_DATA(1,90)";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("1 Record inserted");
+  });
+});
+
+
+
+
+
+
+Practicalno 4
+1. Write a program to demonstrate Angular JS Number and String Expression.
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<body>
+<div ng-app="">
+    First Expression : {{5+5}}
+    <br>
+    2*4 :{{2*4}}
+    <br>
+    Second Expression :
+    {{"Good Afternoon"+"Students"}}
+    <br>
+<div ng-init="quantity=10;cost=5">
+    <p>Total : {{ quantity * cost }}</p>
+</div>
+<div ng-init="person={firstName:'Siddhi' , lastName:'Kotre'}">
+    <p>My name is {{ person.firstName }}</p>
+</div>
+<div ng-init="points=[1,15,12,16,50]">
+    <p>The third number is {{ points[2]}}</p>
+</div>
+</div>
+<div>
+    Expression: {{5+5}}
+</div>
+  </body>
+</html>
+
+2. Write a program to insert the user name in the textbox and greet the user with a welcome message on the same page.
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="">
+      <p>Enter your name:<input type="text" ng-model="name" /></p>
+
+      <p>Welcome:<span ng-bind="name"></span></p>
+    </div>
+  </body>
+</html>
+
+3. Write a program to create an array of your favorite food items and display it in list
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app ng-init="person = ['Pizza','Burger','Momos']">
+      <p>List Of person :</p>
+      <ol>
+        <li ng-repeat=" personname in person">{{'Person: '+personname }}</li>
+      </ol>
+    </div>
+  </body>
+</html>
+
+
+
+4. Write a program to display a list of terms and conditions after checking “Yes I Agree” it will enable “Install” Button.
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="">
+      Yes I agree<input type="checkbox" ng-model="check" /> <br /><br />
+      <span>Terms and conditions</span>
+      <ul>
+        <li>
+          Mutual funds are subject to market risk. Read all scheme-related
+          documents carefully.
+        </li>
+      </ul>
+      <div ng-if="check">
+        <button>Install</button>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+5. Write a program to select any one subject from the drop down list and display the content of the selected subject (use switch directive).
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="">
+      Choose Your favourite Subject:
+      <select ng-model="myVar">
+        <option value="maths">MFCS</option>
+        <option value="wt">WT</option>
+        <option value="ds">DS</option>
+        <option value="java">Java</option>
+      </select>
+      <hr />
+      <div ng-switch="myVar">
+        <div ng-switch-when="maths">
+          <h1>Welcome to MFCS</h1>
+          <p>Study MFCS</p>
+        </div>
+        <div ng-switch-when="wt">
+          <h1>Welcome to Web Technology</h1>
+          <p>Study Web Technology</p>
+        </div>
+        <div ng-switch-when="ds">
+          <h1>Welcome to Data Structures</h1>
+          <p>Study Data Structures</p>
+        </div>
+        <div ng-switch-when="java">
+          <h1>Welcome to Advanced Java</h1>
+          <p>Study Advanced Java</p>
+        </div>
+
+        <div ng-switch-default>
+          <h1>Choose a favourite subject</h1>
+          <p>Study</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+6. Write a program to demonstrate module and controller.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      My name is : {{fname +" "+lname}}
+      <br /><br />
+      Print using ng-bind in HTML control<br />
+      <span ng-bind="fname"></span>
+    </div>
+  </body>
+</html>
+
+<script>
+  var app = angular.module("myApp", []);
+  app.controller("myCtrl", function ($scope) {
+    $scope.fname = "Siddhi ";
+    $scope.lname = "Kotre ";
+  });
+</script>
+
+
+
+7. Write a program to accept the values from the user to calculate simple interest by clicking on a button it will display an answer.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <p>Enter Principle :<input type="number" ng-model="val1" /></p>
+      <p>Enter Rate of Interest :<input type="number" ng-model="val2" /></p>
+      <p>Enter Number of years :<input type="number" ng-model="val3" /></p>
+
+      <button ng-click="add(val1,val2)">Addition</button>
+      Addition : {{result}}
+    </div>
+  </body>
+</html>
+<script>
+  var app = angular.module("myApp", []);
+  app.controller("myCtrl", function ($scope) {
+    $scope.add = function () {
+      $scope.result = ($scope.val1 * $scope.val2 * $scope.val3) / 100;
+    };
+  });
+</script>
+
+8.  enter the radius of a circle and calculate the area of the circle in the controller and display this area by clicking on the button.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <p>Enter radius :<input type="number" ng-model="val1" /></p>
+
+      <button ng-click="calculate(val1)">Area</button>
+      Area : {{result}}
+    </div>
+  </body>
+</html>
+<script>
+  var app = angular.module("myApp", []);
+  app.controller("myCtrl", function ($scope) {
+    $scope.calculate = function () {
+      $scope.result = 3.14 * $scope.val1 * $scope.val1;
+    };
+  });
+</script>
+
+9. create a Student Object which holds at least 3 student information like Roll No., Name and Percentage and display it in tabular form.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Student Information</h2>
+    <div ng-app="myNgApp" ng-controller="myController">
+      <table border="2">
+        <tr ng-repeat="stud in student">
+          <td>{{stud.firstname}}</td>
+          <td>{{stud.lastname}}</td>
+          <td>{{stud.roll_no}}</td>
+          <td>{{stud.percentage}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+<script>
+  var ngApp = angular.module("myNgApp", []);
+  ngApp.controller("myController", ($scope) => {
+    $scope.student = [
+      { firstname: "AAA", lastname: "DDD", roll_no: "100", percentage: "93" },
+      { firstname: "BBB", lastname: "FFF", roll_no: "101", percentage: "94" },
+      { firstname: "CCC", lastname: "EEE", roll_no: "102", percentage: "97" },
+    ];
+  });
+</script>
+
+
+
+10. Write a program to enter Book Details like Book Name (Use Uppercase only), Price (In Rupees), Current Date (in YYYY/MM/DD) use different filters and print data on click event.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      Enter Book name : <input type="text" ng-model="bname" /> <br />
+      Enter Price : <input type="text" ng-model="price" /> <br />
+
+      <button ng-click="calc()">Enter</button>
+      Your Book name is :{{a| uppercase}}<br />
+      The price is :{{b| currency : "Rs: "}}<br />
+      Todays Date is :{{dates| date:"yyyy/MM/dd"}}<br />
+    </div>
+  </body>
+</html>
+
+<script>
+  var App = angular.module("myApp", []).controller("myCtrl", ($scope) => {
+    $scope.calc = () => {
+      $scope.a = $scope.bname;
+      $scope.b = $scope.price;
+      $scope.dates = new Date();
+    };
+  });
+</script>
+
+11. Write a program to generate an array of your favorite cars and also provide searching functionality.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div ng-app="myApp" ng-controller="myController">
+      Enter name to search: <input type="text" ng-model="searchitem" /> <br />
+      Result : {{myArr | filter:searchitem}}
+    </div>
+  </body>
+</html>
+<script>
+  var App = angular.module("myApp", []).controller("myController", ($scope) => {
+    $scope.myArr = ["Mercedes", "Aston Martin", "BMW", "Ferrari", "McLaren"];
+  });
+</script>
+
+12. Write a program to generate a student object which will hold at least 5 student data (Id, Name). Display all the data in tabular format and also provide ascending sort facility in column header.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>Click on the hearders to change the sorting order</p>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <table border="2px">
+        <tr>
+          <th>
+            <a href="" ng-click="orderByMe('name')">Name</a>
+          </th>
+          <th>
+            <a href="" ng-click="orderByMe('ID')">ID</a>
+          </th>
+        </tr>
+
+        <tr ng-repeat="x in name | orderBy:myOrderBy :reverse">
+          <td>{{x.name}}</td>
+          <td>{{x.ID}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
+
+<script>
+  angular.module("myApp", []).controller("myCtrl", function ($scope) {
+    $scope.name = [
+      { name: "Sarah", ID: 60 },
+      { name: "Jonnathan", ID: 51 },
+      { name: "Louis", ID: 34 },
+      { name: "Josey", ID: 73 },
+      { name: "Harry", ID: 54 },
+      { name: "Jaden", ID: 42 },
+    ];
+
+    $scope.reverse = false;
+
+    $scope.orderByMe = function (x) {
+      $scope.myOrderBy = x;
+      $scope.reverse = !$scope.reverse;
+    };
+  });
+</script>
+
+
+
+
+
+13. Write a program to demonstrate mouse events in angular.js.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+      .redDiv {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        padding: 2px 2px 2px 2px;
+      }
+      .yellowDiv {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+        padding: 2px 2px 2px 2px;
+      }
+      .redButton {
+        background-color: red;
+      }
+      .grayButton {
+        background-color: gray;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body ng-app>
+    <div
+      ng-class="{redDiv: enter, yellowDiv: leave}"
+      ng-mouseenter="enter=true;leave=false"
+      ng-mouseleave="enter=false;leave=true"
+    >
+      Mouse<span ng-show="enter"> Enter</span>
+      <span ng-show="leave"> Leave</span>
+    </div>
+
+    <div>
+      <input
+        type="button"
+        value="Button changes color"
+        ng-class="{redButton :entry, grayButton:exit}"
+        ng-mouseenter="entry=true;exit=false"
+        ng-mouseleave="exit=true;entry=false"
+      />
+    </div>
+
+    <button ng-mousemove="count = count +1" ng-init="count=0">
+      Increment (when the mouse moves)
+    </button>
+    count:{{count}}
+  </body>
+</html>
+
+
+14.Write a program to type text in a textbox and draw three options which will provide the functionality of bold, italic and underline and also display color options in dropdown list.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    Enter the text <input type="text" ng-model="t"> <br><br>
+    Choose editing options:
+    <select ng-model="myVar" ng-change="change_style(t)">
+    <option value="b">Bold and red</option>
+    <option value="i">Italic and Blue</option>
+    <option value="u">Underline and green</option>
+    </select>
+    <hr>
+    <div ng-switch="myVar">
+        <div ng-switch-when="b">
+            <b style="color:tomato">Your edited text is:{{data}}</b>
+        </div>
+        <div ng-switch-when="i">
+            <b style="color:blue">Your edited text is:{{data}}</b>
+        </div>
+        <div ng-switch-when="u">
+            <b style="color:green">Your edited text is:{{data}}</b>
+        </div>
+        <div ng-switch-default>
+            <h1>Switch</h1>
+            <p>Select topic from the dropdown list</p>
+        </div>
+    </div>
+    <hr>
+
+</body>
+</html>
+<script>
+      angular.module("myApp", []).controller("myCtrl", function ($scope) {
+   $scope.change_style=function(t){
+    $scope.data = t;
+   }
+      });
+</script>
+
+
+
+15. Write a program to demonstrate how many characters are entered in the textbox. (use ng-keypress)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body ng-app="">
+    <input type="text" ng-keypress="count = count +1" ng-init="count=0"/>
+    key press count: {{count}}
+
+</body>
+</html>
+
+16. Write a program to create a form with the following fields and validations.
+Name (required)
+email (required/email format)
+Age (required, between 18 to 60 years)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app>
+    <form name="studentForm" novalidate>
+        <br>
+            First Name Status:</br>
+            Pristine: {{studentForm.firstName.$pristine}}......
+            The field has not been modified yet</br>
+
+            Touched: {{studentForm.firstName.$touched}}......
+            The field has  been Touched </br>
+
+            UnTouched: {{studentForm.firstName.$untouched}}......
+            The field has not been Touched yet</br>
+
+            Valid: {{studentForm.firstName.$valid}}......
+            The field content is valid</br>
+
+            Invalid: {{studentForm.firstName.$invalid}}......
+            The field content is not valid</br>
+
+            Dirty: {{studentForm.firstName.$dirty}}......
+            The field has not been modified</br>
+
+            Error: {{studentForm.firstName.$error.required}}......
+           </br>
+        </p>
+<label for="firstName">First Name:</label><br/>
+<input type="text" name="firstName" ng-model="firstName" required/>
+<span ng-show="studentForm.firstName.$error.required">First name is required.</span><br/><br/>
+
+<label for="email">Email:</label><br/>
+<input type="email" name="emailid" ng-model="emailid" required/>
+<span ng-show="studentForm.emailid.$error.required">Email is required.</span>
+<span ng-show="studentForm.emailid.$error.email">Email should be in proper format.</span><br/>
+
+<label for="age">Age:</label><br/>
+<input type="number" name="age" min="18" max="60" ng-model="age" required/><br/>
+
+<span ng-show="studentForm.age.$error.required">required</span>
+<span ng-show="studentForm.age.$error.min">Minimum 18 years age allowed</span>
+<span ng-show="studentForm.age.$error.max">Maximum 60 years age allowed</span>
+
+<input type="submit" value="save"/>
+    </form>
+
+  </body>
+</html>
+
+
+
+
+
+17. Write a program that shows the following functionality. Initially all the controls will have a yellow background. If a user enters a valid value then it will change the background color to green, otherwise it will turn to red if there is a validation error.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+ 
+  </head>
+  <style>
+    input.ng-pristine{
+        background-color: yellow;
+    }
+    input.ng-touched.ng-invalid{
+        background-color: red;
+    }
+    input.ng-touched.ng-valid{
+        background-color: green;
+    }
+        </style>
+  <body ng-app>
+    <form name="studentForm" novalidate>
+        <br>
+            First Name Status:</br>
+            Pristine: {{studentForm.firstName.$pristine}}......
+            The field has not been modified yet</br>
+
+            Touched: {{studentForm.firstName.$touched}}......
+            The field has  been Touched </br>
+
+            UnTouched: {{studentForm.firstName.$untouched}}......
+            The field has not been Touched yet</br>
+
+            Valid: {{studentForm.firstName.$valid}}......
+            The field content is valid</br>
+
+            Invalid: {{studentForm.firstName.$invalid}}......
+            The field content is not valid</br>
+
+            Dirty: {{studentForm.firstName.$dirty}}......
+            The field has not been modified</br>
+
+            Error: {{studentForm.firstName.$error.required}}......
+           </br>
+        </p>
+<label for="firstName">First Name:</label><br/>
+<input type="text" name="firstName" ng-model="firstName" required/>
+<span ng-show="studentForm.firstName.$error.required">First name is required.</span><br/><br/>
+
+<label for="email">Email:</label><br/>
+<input type="email" name="emailid" ng-model="emailid" required/>
+<span ng-show="studentForm.emailid.$error.required">Email is required.</span>
+<span ng-show="studentForm.emailid.$error.email">Email should be in proper format.</span><br/>
+
+<label for="age">Age:</label><br/>
+<input type="number" name="age" min="18" max="60" ng-model="age" required/><br/>
+
+<span ng-show="studentForm.age.$error.required">required</span>
+<span ng-show="studentForm.age.$error.min">Minimum 18 years age allowed</span>
+<span ng-show="studentForm.age.$error.max">Maximum 60 years age allowed</span>
+
+<input type="submit" value="save"/>
+    </form>
+
+  </body>
+</html>
+
+
+
+18.  Write a program to demonstrate a custom model update trigger.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body ng-app="formApp">
+    <div ng-controller="FormController">
+        <form novalidate>
+            First Name:  <input type="text" ng-model="employee.fname" ng-model-options="{updateOn: 'blur'}"><br>
+            Last Name:  <input type="text" ng-model="employee.lname" ng-model-options="{updateOn: 'mouseup'}"><br>
+            Gender:  <input type="text" ng-model="employee.gender" ng-model-options="{debounce: 2000}"><br>
+        </form>
+
+        <p>First Name: {{employee.fname}}</p>
+        <p>Last Name: {{employee.lname}}</p>
+        <p>Gender: {{employee.gender}}</p>
+    </div>
+</body>
+<script>
+    var app = angular.module('formApp', []);
+    app.controller('FormController', function($scope) {
+        $scope.employee = {};
+    });
+</script>
+</html>
+
+
+
+19. Write a program that accepts a string which is having an ‘abc’ character in sequence, otherwise display error messages using custom validation.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app="myApp">
+    <p>Try writing in the input field:</p>
+    <form name="myForm">
+      <input
+        name="myInput"
+        ng-model="myInput"
+        required
+        my-directive="CharValidation"
+      />
+    </form>
+    <p>The input's valid state is:</p>
+    <span ng-show="!myForm.myInput.$valid">Enter value: </span>
+    <h1>{{myForm.myInput.$valid}}</h1>
+
+    <script>
+      var app = angular.module("myApp", []);
+      app.directive("myDirective", function () {
+        return {
+          require: "ngModel",
+          link: function (scope, element, attr, myCtrl) {
+            function myValidation(value) {
+              if (/abc/.test(value)) {
+                myCtrl.$setValidity("CharValidation", true);
+              } else {
+                myCtrl.$setValidity("CharValidation", false);
+              }
+              return value;
+            }
+            myCtrl.$parsers.push(myValidation);
+          },
+        };
+      });
+    </script>
+  </body>
+</html>
+
+
+20. Write a program to create an SPA application.	
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app="myApp">
+    <a href="#!home">Home</a>
+    <a href="#!blog">Blog</a>
+    <a href="#!about">About</a>
+    <div ng-view></div>
+  </body>
+</html>
+<script>
+  var app = angular.module("myApp", ["ngRoute"]);
+  app.config(function ($routeProvider) {
+    {
+      $routeProvider
+        .when("/home", {
+          template: "<h1>Home Page</h1>",
+        })
+
+        .when("/blog", {
+          template: "<h1>Blog Page</h1>",
+        })
+        .when("/about", {
+          template: "<h1>About Page</h1>",
+        })
+
+        .otherwise({ redirectTo: "/" });
+    }
+  });
+</script>
+
+21. Write a program to create an SPA application using a controller
+index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js"></script>
+    <script src="demo.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body ng-app="myApp">
+    <script type="text/ng-template" id="homecontent">
+      <h1>Home</h1>
+      <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="blogcontent">
+      <h1>Blog</h1>
+      <h3>{{message}}</h3>
+    </script>
+    <script type="text/ng-template" id="aboutcontent">
+      <h1>About</h1>
+      <h3>{{message}}</h3>
+    </script>
+    <a href="#!">Home</a>
+    <a href="#!blog">Blog</a>
+    <a href="#!about">About</a>
+    <div ng-view></div>
+  </body>
+</html>
+
+demo.js
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when("/", {
+      templateUrl: "homecontent",
+      controller: "HomeController",
+    })
+
+    .when("/blog", {
+      templateUrl: "blogcontent",
+      controller: "BlogController",
+    })
+    .when("/about", {
+      templateUrl: "aboutcontent",
+      controller: "AboutController",
+    })
+
+    .otherwise({ redirectTo: "/" });
+});
+
+app.controller("HomeController", function ($scope) {
+  $scope.message = "Hello welcome to Home Controller";
+});
+app.controller("BlogController", function ($scope) {
+  $scope.message = "Hello welcome to Blog Controller";
+});
+app.controller("AboutController", function ($scope) {
+  $scope.message = "Hello welcome to About Controller";
+});
+
+
+
